@@ -10,29 +10,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap');
 *{box-sizing:border-box}body{margin:0;color:#54283b;font-family:"DM Sans",sans-serif;background:radial-gradient(circle at 10% 0,#fff,transparent 28%),linear-gradient(135deg,#fff7fa,#fde7ef 50%,#fff8f2);min-height:100vh}
 .container{max-width:1250px;margin:auto;padding:18px 16px 60px}.hero{position:relative;overflow:hidden;text-align:center;padding:55px 20px 45px;border-radius:38px;background:linear-gradient(135deg,#ffd9e7,#fff6f2);box-shadow:0 25px 70px #74304a20}
-.hero h1{font:400 clamp(58px,8vw,100px)/1 "Great Vibes";color:#792640;margin:8px 0}.sub{font:28px "Cormorant Garamond";color:#a23d61}.quote{font:italic 21px "Cormorant Garamond";max-width:650px;margin:18px auto;line-height:1.5}.heart{font-size:32px;animation:pulse 1.5s infinite;color:#c72e61}@keyframes pulse{50%{transform:scale(1.25)}}
-.float{position:absolute;font-size:30px;opacity:.65;animation:float 6s ease-in-out infinite}@keyframes float{50%{transform:translateY(-35px) rotate(12deg)}}
-.nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:20px 0}.nav button,.period button{border:0;border-radius:999px;padding:11px 17px;background:#fff;color:#842a4b;font-weight:700;cursor:pointer;box-shadow:0 7px 25px #7a294118}.nav button.active,.nav button:hover,.period button.active{background:#b83261;color:#fff}
-.sync{position:fixed;right:15px;bottom:15px;z-index:50;background:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 10px 30px #6d284422;font-size:12px;font-weight:700}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#28ae65;margin-right:6px}.error .dot{background:#d23b61}.saving .dot{background:#e29a32}
+.hero h1{font:400 clamp(58px,8vw,100px)/1 "Great Vibes";color:#792640;margin:8px 0}.sub{font:28px "Cormorant Garamond";color:#a23d61}.quote{font:italic 21px "Cormorant Garamond";max-width:650px;margin:18px auto;line-height:1.5}.heart{font-size:32px;animation:pulse 1.5s infinite;color:#c72e61}@keyframes pulse{50%{transform:scale(1.25)}}.float{position:absolute;font-size:30px;opacity:.65;animation:float 6s ease-in-out infinite}@keyframes float{50%{transform:translateY(-35px) rotate(12deg)}}
+.nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:20px 0}.nav button,.period button,.cloud button{border:0;border-radius:999px;padding:11px 17px;background:#fff;color:#842a4b;font-weight:700;cursor:pointer;box-shadow:0 7px 25px #7a294118}.nav button.active,.nav button:hover,.period button.active{background:#b83261;color:#fff}
+.cloud{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}.cloud button.save{background:#b83261;color:#fff}.cloud button.load{background:#fff}.cloudStatus{text-align:center;font-size:13px;color:#8e6474;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:#ffffffd8;border:1px solid #fff;border-radius:24px;box-shadow:0 15px 50px #6d284410;padding:20px;backdrop-filter:blur(10px)}.stat .label{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#9b697a}.stat .value{font:700 34px "Cormorant Garamond";color:#8b2c4e;margin-top:5px}
-.title{font:700 35px "Cormorant Garamond";color:#7b2947;margin:30px 0 12px}.two{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.chart{height:350px}.period{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
-.entry{display:grid;grid-template-columns:1.1fr 120px 110px 80px;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid #f1dfe5}input{width:100%;border:1px solid #ebd1da;border-radius:11px;padding:10px;background:#fff;color:#593042;font:inherit}button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;color:#fff;font-weight:700;cursor:pointer}.soft{background:#f7e0e8!important;color:#963052!important}
+.title{font:700 35px "Cormorant Garamond";color:#7b2947;margin:30px 0 12px}.two{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.chart{height:350px}
+.entry{display:grid;grid-template-columns:1.1fr 120px 110px 80px;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid #f1dfe5}input{width:100%;border:1px solid #ebd1da;border-radius:11px;padding:10px;background:#fff;color:#593042;font:inherit}
+button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;color:#fff;font-weight:700;cursor:pointer}.soft{background:#f7e0e8!important;color:#963052!important}
 .subject{background:linear-gradient(145deg,#fff,#fff0f5);border:1px solid #f1d4df;border-radius:22px;padding:18px;overflow:hidden}.subject h3{font:700 28px "Cormorant Garamond";margin:0 0 8px;color:#812b4b}.percent{font-size:32px;font-weight:700;color:#b43260}.progress{height:9px;border-radius:99px;background:#f3dce4;overflow:hidden;margin-top:8px}.bar{height:100%;background:linear-gradient(90deg,#cb3d6b,#ee91ad);border-radius:99px}
 .paper{display:grid;grid-template-columns:1.3fr 85px 85px 70px 38px;gap:7px;align-items:center;padding:8px 0;border-bottom:1px dashed #ead2da}.add{border:0;border-radius:999px;padding:9px 14px;margin-top:10px;background:#fff;color:#9c3157;font-weight:700;cursor:pointer;box-shadow:0 6px 18px #8b2c4e15}
 .secret{min-height:310px;text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#6f203d,#aa315b,#d66d8d)}.secret h2{font:400 62px "Great Vibes";margin:0}.secret p{line-height:1.7;color:#ffeaf1;max-width:650px;margin:8px auto}.secret button{border:0;border-radius:999px;padding:13px 23px;background:#fff;color:#812b4b;font-weight:700;cursor:pointer}.secret-note{font:32px "Great Vibes";margin-top:18px}.hidden{display:none!important}.small{font-size:13px;color:#936b7b}.empty{text-align:center;padding:15px;color:#aa7c8c;background:#fff8fa;border-radius:13px}.footer{text-align:center;color:#9b6d7e;font:20px "Cormorant Garamond";padding-top:30px}
-@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}}
-@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.entry{grid-template-columns:1fr 90px 80px 65px}.paper{grid-template-columns:1fr 65px 65px 55px 30px}.hero{padding:40px 15px}.sub{font-size:23px}}
+@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}}@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.entry{grid-template-columns:1fr 90px 80px 65px}.paper{grid-template-columns:1fr 65px 65px 55px 30px}.hero{padding:40px 15px}.sub{font-size:23px}}
 </style>
 </head>
 <body>
-<div id="sync" class="sync"><span class="dot"></span><span id="syncText">Connecting…</span></div>
 <div class="container">
-
 <header class="hero">
-<span class="float" style="left:8%;top:18%">♡</span><span class="float" style="right:10%;top:30%;animation-delay:1s">✦</span><span class="float" style="left:15%;bottom:16%;animation-delay:2s">🌸</span><span class="float" style="right:17%;bottom:15%;animation-delay:3s">♡</span>
+<span class="float" style="left:8%;top:18%">♡</span><span class="float" style="right:10%;top:30%">✦</span><span class="float" style="left:15%;bottom:16%">🌸</span><span class="float" style="right:17%;bottom:15%">♡</span>
 <div class="heart">♥</div><h1>A Little Place for You</h1><div class="sub">Your little journey, one day at a time ♡</div>
 <div class="quote">“Some dreams are quietly built, one hour, one paper, one beautiful day at a time.”</div>
 </header>
+
+<div class="cloud">
+<button class="save" onclick="saveToCloud()">☁️ SAVE TO CLOUD</button>
+<button class="load" onclick="loadFromCloud()">↻ LOAD FROM CLOUD</button>
+</div>
+<div id="cloudStatus" class="cloudStatus">🟢 Changes are saved on this device. Cloud save is manual.</div>
 
 <nav class="nav">
 <button class="active" onclick="showPage('dashboard',this)">♡ Dashboard</button>
@@ -49,32 +52,22 @@
 <div class="card stat">🏆<div class="label">Best Day</div><div class="value" id="best">—</div></div>
 <div class="card stat">💗<div class="label">Days Tracked</div><div class="value" id="daysCount">0</div></div>
 </div>
-
 <h2 class="title">♡ Study Time</h2>
 <div class="panel"><div class="period">
-<button class="active" onclick="setPeriod(7,this)">7 Days</button><button onclick="setPeriod(30,this)">30 Days</button><button onclick="setPeriod(90,this)">90 Days</button><button onclick="setPeriod('all',this)">Whole Journey</button>
+<button class="active" onclick="setStudyPeriod(7,this)">7 Days</button><button onclick="setStudyPeriod(30,this)">30 Days</button><button onclick="setStudyPeriod(90,this)">90 Days</button><button onclick="setStudyPeriod('all',this)">Whole Journey</button>
 </div><div class="chart"><canvas id="studyChart"></canvas></div></div>
-
-<div class="two" style="margin-top:16px">
-<div class="panel"><h2 class="title" style="margin-top:0">📊 Subject Study Time</h2><div class="chart"><canvas id="subjectChart"></canvas></div></div>
-<div class="panel"><h2 class="title" style="margin-top:0">✨ Little Numbers</h2><p class="small">Most productive day</p><h2 id="bestFull">—</h2><p class="small">Subject hours</p><h2 id="subjectTotal">0h 00m</h2><p class="small">Papers recorded</p><h2 id="paperCount">0</h2></div>
-</div>
-
+<div class="two" style="margin-top:16px"><div class="panel"><h2 class="title" style="margin-top:0">📊 Subject Study Time</h2><div class="chart"><canvas id="subjectChart"></canvas></div></div><div class="panel"><h2 class="title" style="margin-top:0">✨ Little Numbers</h2><p class="small">Most productive day</p><h2 id="bestFull">—</h2><p class="small">Subject hours</p><h2 id="subjectTotal">0h 00m</h2><p class="small">Papers recorded</p><h2 id="paperCount">0</h2></div></div>
 <h2 class="title">📚 Marks at a glance</h2><div class="three" id="subjectCards"></div>
 <div class="panel" style="margin-top:16px"><h2 class="title" style="margin-top:0">📈 Subject Performance</h2><div class="chart"><canvas id="marksChart"></canvas></div></div>
 </section>
 
 <section id="daily" class="hidden">
-<h2 class="title">🌷 Day by Day Study Time</h2>
-<div class="panel"><p class="small">Enter the total study time for each day. Use decimals such as 8.5 for 8 hours 30 minutes. This data is shared through the cloud.</p><div id="dailyRows"></div><button class="action" style="margin-top:14px" onclick="addDay()">＋ Add another day</button></div>
+<h2 class="title">🌷 Day by Day Study Time</h2><div class="panel"><p class="small">Enter total study hours. Decimals are supported: 8.5 = 8h 30m. Nothing is uploaded until you press <b>SAVE TO CLOUD</b>.</p><div id="dailyRows"></div><button class="action" style="margin-top:14px" onclick="addDay()">＋ Add another day</button></div>
 </section>
 
 <section id="subjectTime" class="hidden">
-<h2 class="title">⏳ Separate Subject Study Time</h2>
-<div class="panel"><p class="small">This is additional to the overall Daily Log. Track Biology, Physics and Chemistry separately. Enter hours as decimals: 3.5 = 3h 30m.</p><div id="subjectTimeRows"></div></div>
-<div class="panel" style="margin-top:16px"><div class="period">
-<button class="active" onclick="setSubjectPeriod(7,this)">7 Days</button><button onclick="setSubjectPeriod(30,this)">30 Days</button><button onclick="setSubjectPeriod(90,this)">90 Days</button><button onclick="setSubjectPeriod('all',this)">Whole Journey</button>
-</div><div class="chart"><canvas id="subjectPeriodChart"></canvas></div></div>
+<h2 class="title">⏳ Separate Subject Study Time</h2><div class="panel"><p class="small">Additional tracker for Biology, Physics and Chemistry. Enter 3.5 for 3h 30m. Changes stay local until you press SAVE TO CLOUD.</p><div id="subjectTimeRows"></div><button class="action" style="margin-top:14px" onclick="addSubjectDay()">＋ Add another subject day</button></div>
+<div class="panel" style="margin-top:16px"><div class="period"><button class="active" onclick="setSubjectPeriod(7,this)">7 Days</button><button onclick="setSubjectPeriod(30,this)">30 Days</button><button onclick="setSubjectPeriod(90,this)">90 Days</button><button onclick="setSubjectPeriod('all',this)">Whole Journey</button></div><div class="chart"><canvas id="subjectPeriodChart"></canvas></div></div>
 </section>
 
 <section id="marks" class="hidden">
@@ -92,212 +85,106 @@
 const SUPABASE_URL='https://wqenkappxfkxkbyxwmsg.supabase.co';
 const SUPABASE_KEY='sb_publishable_kk9tEbB0OdC0o4iyGCUHHw_UIZs_ki0';
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-
 const SUBJECTS={bio:{name:'Biology',icon:'🧬'},phy:{name:'Physics',icon:'⚛️'},chem:{name:'Chemistry',icon:'🧪'}};
-let study=[], subjectTime={bio:{},phy:{},chem:{}}, marks={bio:[],phy:[],chem:[]};
-let studyChart=null,subjectChart=null,subjectPeriodChart=null,marksChart=null,paperChart=null;
-let studyPeriod=7,subjectPeriod=7,busy=false;
+let study=[],subjectTime={bio:{},phy:{},chem:{}},marks={bio:[],phy:[],chem:{}};
+marks={bio:[],phy:[],chem:[]};
+let studyChart,subjectChart,subjectPeriodChart,marksChart,paperChart,studyPeriod=7,subjectPeriod=7;
 
 const $=id=>document.getElementById(id);
-function fmt(h){h=Number(h)||0;let m=Math.round(h*60);return Math.floor(m/60)+'h '+String(m%60).padStart(2,'0')+'m'}
+function fmt(h){let m=Math.round((Number(h)||0)*60);return Math.floor(m/60)+'h '+String(m%60).padStart(2,'0')+'m'}
 function pct(p){let max=Number(p.max)||100;return max?Math.round((Number(p.mark)||0)/max*100):0}
 function labelDate(d){return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}
 function safe(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function status(type,text){$('sync').className='sync '+type;$('syncText').textContent=text}
-function showPage(id,btn){document.querySelectorAll('section').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderAll()}
-function clampHours(v){v=Number(v);if(!Number.isFinite(v))return 0;return Math.round(Math.max(0,Math.min(24,v))*4)/4}
+function hours(v){v=Number(v);if(!Number.isFinite(v))return 0;return Math.round(Math.max(0,Math.min(24,v))*4)/4}
+function setStatus(t){$('cloudStatus').textContent=t}
+function showPage(id,b){document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderAll()}
 
-/* ---------- LOAD ---------- */
-async function loadAll(){
- status('saving','Loading cloud…');
+/* Local storage */
+function localSave(){localStorage.setItem('lp_study',JSON.stringify(study));localStorage.setItem('lp_subjectTime',JSON.stringify(subjectTime));localStorage.setItem('lp_marks',JSON.stringify(marks));setStatus('🟢 Changes saved on this device · ☁️ Press SAVE TO CLOUD when ready')}
+function localLoad(){study=JSON.parse(localStorage.getItem('lp_study')||'[]');subjectTime=JSON.parse(localStorage.getItem('lp_subjectTime')||'{"bio":{},"phy":{},"chem":{}}');marks=JSON.parse(localStorage.getItem('lp_marks')||'{"bio":[],"phy":[],"chem":[]}');if(!subjectTime.bio)subjectTime={bio:{},phy:{},chem:{}};if(!marks.bio)marks={bio:[],phy:[],chem:[]}}
+function norm(s){s=String(s||'').toLowerCase();if(s.includes('bio'))return'bio';if(s.includes('phys'))return'phy';if(s.includes('chem'))return'chem';return null}
+
+/* Daily */
+function renderDaily(){$('dailyRows').innerHTML=study.map((x,i)=>`<div class="entry"><input type="date" value="${x.date}" onchange="changeDate(${i},this.value)"><input type="number" min="0" max="24" step=".25" value="${Number(x.hours)||0}" oninput="editHours(${i},this.value)" onblur="editHours(${i},this.value)"><span class="small">${fmt(x.hours)}</span><button class="soft" style="border:0;border-radius:11px;padding:10px;cursor:pointer" onclick="deleteDay(${i})">Delete</button></div>`).join('')||'<div class="empty">No days yet ♡</div>'}
+function editHours(i,v){study[i].hours=hours(v);localSave();renderDashboard()}
+function changeDate(i,v){if(!v)return;if(study.some((x,j)=>j!==i&&x.date===v)){alert('That date already exists.');renderDaily();return}study[i].date=v;study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()}
+function addDay(){let d=study.length?new Date(study[study.length-1].date+'T00:00:00'):new Date();d.setDate(d.getDate()+1);let date=d.toISOString().slice(0,10);while(study.some(x=>x.date===date)){d.setDate(d.getDate()+1);date=d.toISOString().slice(0,10)}study.push({date,hours:0});study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()}
+function deleteDay(i){study.splice(i,1);localSave();renderAll()}
+
+/* Subject time */
+function dates(){let s=new Set(study.map(x=>x.date));Object.values(subjectTime).forEach(o=>Object.keys(o).forEach(d=>s.add(d)));return[...s].sort()}
+function renderSubjectTime(){let ds=dates();$('subjectTimeRows').innerHTML=ds.length?ds.map(d=>`<div style="padding:14px 0;border-bottom:1px solid #f0dfe5"><div style="font-weight:700;margin-bottom:8px">${labelDate(d)}</div><div class="three">${Object.entries(SUBJECTS).map(([k,s])=>`<div><div class="small">${s.icon} ${s.name}</div><input type="number" min="0" max="24" step=".25" value="${Number(subjectTime[k]?.[d]||0)}" oninput="editSubject('${k}','${d}',this.value)"><div class="small">${fmt(subjectTime[k]?.[d]||0)}</div></div>`).join('')}</div></div>`).join(''):'<div class="empty">Add a day to begin ♡</div>';renderSubjectPeriodChart()}
+function editSubject(k,d,v){if(!subjectTime[k])subjectTime[k]={};subjectTime[k][d]=hours(v);localSave();renderDashboard()}
+function addSubjectDay(){let ds=dates(),d=ds.length?new Date(ds[ds.length-1]+'T00:00:00'):new Date();d.setDate(d.getDate()+1);let date=d.toISOString().slice(0,10);Object.keys(SUBJECTS).forEach(k=>subjectTime[k][date]=0);localSave();renderAll()}
+
+/* Marks */
+function avg(k){let a=marks[k]||[];if(!a.length)return 0;let m=a.reduce((s,p)=>s+Number(p.mark||0),0),mx=a.reduce((s,p)=>s+Number(p.max||100),0);return mx?Math.round(m/mx*100):0}
+function renderEditor(){$('subjectEditor').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${avg(k)}%</div><div class="small">${marks[k].length} papers</div><div class="progress"><div class="bar" style="width:${avg(k)}%"></div></div>${marks[k].length?marks[k].map((p,i)=>`<div class="paper"><input value="${safe(p.name)}" oninput="editPaper('${k}',${i},'name',this.value)"><input type="number" min="0" value="${p.mark}" oninput="editPaper('${k}',${i},'mark',this.value)"><input type="number" min="1" value="${p.max}" oninput="editPaper('${k}',${i},'max',this.value)"><b>${pct(p)}%</b><button class="soft" style="border:0;border-radius:9px;padding:7px" onclick="deletePaper('${k}',${i})">×</button></div>`).join(''):'<div class="empty">No papers yet ♡</div>'}<button class="add" onclick="addPaper('${k}')">＋ Add paper</button></div>`).join('')}
+function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave();renderAll()}
+function editPaper(k,i,f,v){if(f==='name')marks[k][i].name=v;else marks[k][i][f]=Math.max(0,Number(v)||0);localSave();renderAll()}
+function deletePaper(k,i){marks[k].splice(i,1);localSave();renderAll()}
+
+/* Manual cloud save */
+async function saveToCloud(){
+ setStatus('☁️ Saving everything to cloud…');
  try{
-  const [a,b,c]=await Promise.all([
-   db.from('study_sessions').select('*').order('study_date',{ascending:true}),
-   db.from('subject_study_sessions').select('*').order('study_date',{ascending:true}),
-   db.from('subject_papers').select('*').order('id',{ascending:true})
-  ]);
-  if(a.error)throw a.error;if(b.error)throw b.error;if(c.error)throw c.error;
-
-  study=(a.data||[]).map(r=>({date:r.study_date,hours:clampHours(r.hours)}));
+  for(const x of study){
+   let q=await db.from('study_sessions').upsert({study_date:x.date,hours:Number(x.hours)||0},{onConflict:'study_date'});
+   if(q.error)throw q.error;
+  }
+  for(const k of Object.keys(SUBJECTS)){
+   for(const d of Object.keys(subjectTime[k]||{})){
+    let q=await db.from('subject_study_sessions').upsert({study_date:d,subject:SUBJECTS[k].name,hours:Number(subjectTime[k][d])||0},{onConflict:'study_date,subject'});
+    if(q.error)throw q.error;
+   }
+  }
+  /* Replace cloud papers with local paper set safely by deleting only known subjects */
+  for(const k of Object.keys(SUBJECTS)){
+   let del=await db.from('subject_papers').delete().eq('subject',SUBJECTS[k].name);
+   if(del.error)throw del.error;
+   if(marks[k].length){
+    let rows=marks[k].map(p=>({subject:SUBJECTS[k].name,paper_name:p.name||'Paper',marks:Number(p.mark)||0,max_marks:Number(p.max)||100}));
+    let ins=await db.from('subject_papers').insert(rows);
+    if(ins.error)throw ins.error;
+   }
+  }
+  setStatus('💗 Everything is safely saved to the cloud!');
+ }catch(e){console.error(e);setStatus('❌ Cloud save failed: '+(e.message||'Check Supabase permissions/table names'))}
+}
+async function loadFromCloud(){
+ setStatus('↻ Loading latest cloud data…');
+ try{
+  let a=await db.from('study_sessions').select('*').order('study_date',{ascending:true});if(a.error)throw a.error;
+  let b=await db.from('subject_study_sessions').select('*').order('study_date',{ascending:true});if(b.error)throw b.error;
+  let c=await db.from('subject_papers').select('*').order('id',{ascending:true});if(c.error)throw c.error;
+  study=(a.data||[]).map(x=>({date:x.study_date,hours:Number(x.hours)||0}));
   subjectTime={bio:{},phy:{},chem:{}};
-  (b.data||[]).forEach(r=>{let k=normSub(r.subject);if(k)subjectTime[k][r.study_date]=clampHours(r.hours)});
+  (b.data||[]).forEach(x=>{let k=norm(x.subject);if(k)subjectTime[k][x.study_date]=Number(x.hours)||0});
   marks={bio:[],phy:[],chem:[]};
-  (c.data||[]).forEach(r=>{let k=normSub(r.subject);if(k)marks[k].push({id:r.id,name:r.paper_name||'Paper',mark:Number(r.marks)||0,max:Number(r.max_marks)||100})});
-
-  localStorage.setItem('study',JSON.stringify(study));localStorage.setItem('subjectTime',JSON.stringify(subjectTime));localStorage.setItem('marks',JSON.stringify(marks));
-  status('','☁ Synced');renderAll();
- }catch(e){
-  console.error(e);status('error','Cloud error');
-  study=JSON.parse(localStorage.getItem('study')||'[]');
-  subjectTime=JSON.parse(localStorage.getItem('subjectTime')||'{"bio":{},"phy":{},"chem":{}}');
-  marks=JSON.parse(localStorage.getItem('marks')||'{"bio":[],"phy":[],"chem":[]}');
-  renderAll();
- }
-}
-function normSub(s){s=String(s||'').toLowerCase();if(s.includes('bio'))return'bio';if(s.includes('phys'))return'phy';if(s.includes('chem'))return'chem';return null}
-
-/* ---------- STUDY TIME: UPSERT ONE ROW ---------- */
-async function saveStudyRow(index){
- const x=study[index];if(!x)return;
- x.hours=clampHours(x.hours);
- localStorage.setItem('study',JSON.stringify(study));
- status('saving','Saving…');
- try{
-  const {error}=await db.from('study_sessions').upsert(
-   {study_date:x.date,hours:x.hours},
-   {onConflict:'study_date'}
-  );
-  if(error)throw error;
-  status('','☁ Saved everywhere');
-  renderDashboard();
- }catch(e){console.error(e);status('error','Save failed')}
-}
-function setStudyHours(i,input){
- let v=String(input.value??'').trim();v=v===''?0:clampHours(v);
- study[i].hours=v;input.value=v;
- const d=document.getElementById('dailyDisplay'+i);if(d)d.textContent=fmt(v);
- saveStudyRow(i);
-}
-function changeStudyDate(i,date){
- if(!date)return;
- let duplicate=study.findIndex((x,j)=>j!==i&&x.date===date);
- if(duplicate>=0){alert('That date already exists.');renderDaily();return}
- study[i].date=date;study.sort((a,b)=>a.date.localeCompare(b.date));
- saveStudyRow(study.findIndex(x=>x.date===date));
-}
-async function addDay(){
- let d=study.length?new Date(study[study.length-1].date+'T00:00:00'):new Date();
- d.setDate(d.getDate()+1);let date=d.toISOString().slice(0,10);
- while(study.some(x=>x.date===date)){d.setDate(d.getDate()+1);date=d.toISOString().slice(0,10)}
- study.push({date,hours:0});study.sort((a,b)=>a.date.localeCompare(b.date));
- renderAll();await saveStudyRow(study.findIndex(x=>x.date===date));
-}
-async function deleteDay(i){
- const date=study[i]?.date;if(!date)return;
- study.splice(i,1);localStorage.setItem('study',JSON.stringify(study));
- try{status('saving','Deleting…');let {error}=await db.from('study_sessions').delete().eq('study_date',date);if(error)throw error;status('','☁ Synced');renderAll()}catch(e){status('error','Delete failed')}
-}
-function renderDaily(){
- $('dailyRows').innerHTML=study.map((x,i)=>`<div class="entry">
-<input type="date" value="${x.date}" onchange="changeStudyDate(${i},this.value)">
-<input type="number" min="0" max="24" step=".25" inputmode="decimal" value="${Number(x.hours)||0}" onblur="setStudyHours(${i},this)" onkeydown="if(event.key==='Enter')this.blur()">
-<span class="small" id="dailyDisplay${i}">${fmt(x.hours)}</span>
-<button class="soft" style="border:0;border-radius:11px;padding:10px;cursor:pointer" onclick="deleteDay(${i})">Delete</button>
-</div>`).join('')||'<div class="empty">No days yet ♡</div>';
+  (c.data||[]).forEach(x=>{let k=norm(x.subject);if(k)marks[k].push({name:x.paper_name||'Paper',mark:Number(x.marks)||0,max:Number(x.max_marks)||100})});
+  localSave();setStatus('🟢 Cloud data loaded successfully');renderAll();
+ }catch(e){console.error(e);setStatus('❌ Cloud load failed: '+(e.message||'Check Supabase'))}
 }
 
-/* ---------- SUBJECT TIME ---------- */
-async function saveSubjectHours(subject,date,input){
- let v=clampHours(String(input.value??'').trim()===''?0:input.value);
- if(!subjectTime[subject])subjectTime[subject]={};
- subjectTime[subject][date]=v;input.value=v;
- localStorage.setItem('subjectTime',JSON.stringify(subjectTime));
- status('saving','Saving subject time…');
- try{
-  const {error}=await db.from('subject_study_sessions').upsert(
-   {study_date:date,subject:SUBJECTS[subject].name,hours:v},
-   {onConflict:'study_date,subject'}
-  );
-  if(error)throw error;
-  status('','☁ Saved everywhere');renderDashboard();renderSubjectTime();
- }catch(e){console.error(e);status('error','Subject save failed')}
-}
-async function deleteSubjectDate(subject,date){
- delete subjectTime[subject][date];localStorage.setItem('subjectTime',JSON.stringify(subjectTime));
- try{status('saving','Deleting…');let {error}=await db.from('subject_study_sessions').delete().eq('study_date',date).eq('subject',SUBJECTS[subject].name);if(error)throw error;status('','☁ Synced');renderAll()}catch(e){status('error','Delete failed')}
-}
-function allDates(){
- let s=new Set(study.map(x=>x.date));
- Object.values(subjectTime).forEach(o=>Object.keys(o).forEach(d=>s.add(d)));
- return [...s].sort();
-}
-function renderSubjectTime(){
- const dates=allDates().slice(-Math.max(30,studyPeriod==='all'?365:Number(studyPeriod)||30));
- $('subjectTimeRows').innerHTML=dates.length?dates.map(d=>`<div style="padding:14px 0;border-bottom:1px solid #f0dfe5">
-<div style="font-weight:700;margin-bottom:8px">${labelDate(d)}</div>
-<div class="three">${Object.entries(SUBJECTS).map(([k,s])=>`<div><div class="small">${s.icon} ${s.name}</div><input type="number" min="0" max="24" step=".25" inputmode="decimal" value="${Number(subjectTime[k]?.[d]||0)}" onblur="saveSubjectHours('${k}','${d}',this)" onkeydown="if(event.key==='Enter')this.blur()"><div class="small">${fmt(subjectTime[k]?.[d]||0)}</div></div>`).join('')}</div>
-</div>`).join(''):'<div class="empty">Add a daily log first, or start entering subject time ♡</div>';
- renderSubjectPeriodChart();
-}
-
-/* ---------- MARKS ---------- */
-function subjectAverage(k){
- let a=marks[k]||[];if(!a.length)return 0;let max=a.reduce((s,p)=>s+(Number(p.max)||100),0),m=a.reduce((s,p)=>s+(Number(p.mark)||0),0);return max?Math.round(m/max*100):0;
-}
-async function addPaper(k){
- const p={name:'New Paper',mark:0,max:100};marks[k].push(p);renderAll();
- try{
-  status('saving','Saving paper…');
-  let {data,error}=await db.from('subject_papers').insert({subject:SUBJECTS[k].name,paper_name:p.name,marks:0,max_marks:100}).select().single();
-  if(error)throw error;p.id=data.id;localStorage.setItem('marks',JSON.stringify(marks));status('','☁ Saved everywhere');renderAll();
- }catch(e){console.error(e);status('error','Paper save failed')}
-}
-async function updatePaper(k,i,field,value){
- if(!marks[k][i])return;
- if(field==='name')marks[k][i].name=value;
- else marks[k][i][field]=Math.max(0,Number(value)||0);
- localStorage.setItem('marks',JSON.stringify(marks));renderAll();
- let p=marks[k][i];if(!p.id){return}
- try{
-  status('saving','Saving mark…');
-  let row={paper_name:p.name,marks:p.mark,max_marks:p.max};
-  let {error}=await db.from('subject_papers').update(row).eq('id',p.id);if(error)throw error;
-  status('','☁ Saved everywhere');
- }catch(e){console.error(e);status('error','Mark save failed')}
-}
-async function deletePaper(k,i){
- let p=marks[k][i];marks[k].splice(i,1);localStorage.setItem('marks',JSON.stringify(marks));renderAll();
- if(p.id){try{let {error}=await db.from('subject_papers').delete().eq('id',p.id);if(error)throw error;status('','☁ Synced')}catch(e){status('error','Delete failed')}}
-}
-function renderSubjectEditor(){
- $('subjectEditor').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${subjectAverage(k)}%</div><div class="small">${marks[k].length} paper${marks[k].length===1?'':'s'}</div><div class="progress"><div class="bar" style="width:${subjectAverage(k)}%"></div></div><div style="margin-top:12px">${marks[k].length?marks[k].map((p,i)=>`<div class="paper"><input value="${safe(p.name)}" onchange="updatePaper('${k}',${i},'name',this.value)"><input type="number" min="0" value="${p.mark}" onchange="updatePaper('${k}',${i},'mark',this.value)"><input type="number" min="1" value="${p.max}" onchange="updatePaper('${k}',${i},'max',this.value)"><b style="color:#9b3158">${pct(p)}%</b><button class="soft" style="border:0;border-radius:9px;padding:7px;cursor:pointer" onclick="deletePaper('${k}',${i})">×</button></div>`).join(''):'<div class="empty">No papers yet ♡</div>'}</div><button class="add" onclick="addPaper('${k}')">＋ Add paper</button></div>`).join('');
-}
-
-/* ---------- CHARTS ---------- */
-function chartDestroy(c){if(c)c.destroy()}
-function renderStudyChart(){
- chartDestroy(studyChart);let arr=studyPeriod==='all'?study:study.slice(-Number(studyPeriod));let ctx=$('studyChart').getContext('2d');
- studyChart=new Chart(ctx,{type:'line',data:{labels:arr.map(x=>labelDate(x.date)),datasets:[{label:'Hours',data:arr.map(x=>x.hours),borderColor:'#b83261',backgroundColor:'#b8326130',fill:true,tension:.35,pointRadius:5}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,title:{display:true,text:'Hours'}}},plugins:{legend:{display:false}}}});
-}
-function subjectTotals(dates){
- return Object.keys(SUBJECTS).map(k=>dates.reduce((s,d)=>s+Number(subjectTime[k]?.[d]||0),0));
-}
-function renderSubjectChart(){
- chartDestroy(subjectChart);let dates=allDates().slice(-30),ctx=$('subjectChart').getContext('2d');
- subjectChart=new Chart(ctx,{type:'bar',data:{labels:dates.map(labelDate),datasets:Object.entries(SUBJECTS).map(([k,s])=>({label:s.name,data:dates.map(d=>Number(subjectTime[k]?.[d]||0)),backgroundColor:k==='bio'?'#d85c82':k==='phy'?'#b75b88':'#c94c70',borderRadius:6}))},options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,title:{display:true,text:'Hours'}}}}});
-}
-function renderSubjectPeriodChart(){
- chartDestroy(subjectPeriodChart);let dates=allDates();dates=subjectPeriod==='all'?dates:dates.slice(-Number(subjectPeriod));let ctx=$('subjectPeriodChart').getContext('2d');
- subjectPeriodChart=new Chart(ctx,{type:'line',data:{labels:dates.map(labelDate),datasets:Object.entries(SUBJECTS).map(([k,s])=>({label:s.name,data:dates.map(d=>Number(subjectTime[k]?.[d]||0)),borderColor:k==='bio'?'#d85c82':k==='phy'?'#b75b88':'#c94c70',tension:.35,pointRadius:4}))},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,title:{display:true,text:'Hours'}}}}});
-}
-function renderMarksChart(){
- chartDestroy(marksChart);let ctx=$('marksChart').getContext('2d');marksChart=new Chart(ctx,{type:'bar',data:{labels:Object.values(SUBJECTS).map(s=>s.name),datasets:[{label:'Average %',data:Object.keys(SUBJECTS).map(subjectAverage),backgroundColor:['#d85c82','#b75b88','#c94c70'],borderRadius:12}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100}}}});
-}
-function renderPaperChart(){
- chartDestroy(paperChart);let rows=[];Object.entries(SUBJECTS).forEach(([k,s])=>(marks[k]||[]).forEach(p=>rows.push({name:s.name+' · '+p.name,score:pct(p)})));
- let ctx=$('paperChart').getContext('2d');paperChart=new Chart(ctx,{type:'bar',data:{labels:rows.map(r=>r.name),datasets:[{label:'Paper %',data:rows.map(r=>r.score),backgroundColor:'#d85c82',borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,scales:{x:{beginAtZero:true,max:100}}}});
-}
+/* Charts */
+function destroy(x){if(x)x.destroy()}
 function renderDashboard(){
- let total=study.reduce((s,x)=>s+x.hours,0),avg=study.length?total/study.length:0,best=study.reduce((a,b)=>b.hours>a.hours?b:a,{hours:-1});
- $('total').textContent=fmt(total);$('avg').textContent=fmt(avg);$('daysCount').textContent=study.length;
- $('best').textContent=best.hours>=0?fmt(best.hours):'—';$('bestFull').textContent=best.hours>=0?labelDate(best.date)+' · '+fmt(best.hours):'—';
- let st=Object.keys(SUBJECTS).reduce((s,k)=>s+Object.values(subjectTime[k]||{}).reduce((a,b)=>a+Number(b||0),0),0);$('subjectTotal').textContent=fmt(st);
- $('paperCount').textContent=Object.values(marks).reduce((s,a)=>s+a.length,0);
- renderStudyChart();renderSubjectChart();renderMarksChart();
- $('subjectCards').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${subjectAverage(k)}%</div><div class="small">${marks[k].length} paper${marks[k].length===1?'':'s'}</div><div class="progress"><div class="bar" style="width:${subjectAverage(k)}%"></div></div></div>`).join('');
-}
-function renderAll(){renderDashboard();renderDaily();renderSubjectTime();renderSubjectEditor();renderPaperChart()}
-function setPeriod(p,b){studyPeriod=p;document.querySelectorAll('#dashboard .period button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderStudyChart()}
+ let total=study.reduce((s,x)=>s+Number(x.hours||0),0),av=study.length?total/study.length:0,b=study.reduce((a,x)=>x.hours>a.hours?x:a,{hours:-1});
+ $('total').textContent=fmt(total);$('avg').textContent=fmt(av);$('daysCount').textContent=study.length;$('best').textContent=b.hours>=0?fmt(b.hours):'—';$('bestFull').textContent=b.hours>=0?labelDate(b.date)+' · '+fmt(b.hours):'—';
+ let st=Object.values(subjectTime).reduce((s,o)=>s+Object.values(o).reduce((a,v)=>a+Number(v||0),0),0);$('subjectTotal').textContent=fmt(st);$('paperCount').textContent=Object.values(marks).reduce((s,a)=>s+a.length,0);
+ $('subjectCards').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${avg(k)}%</div><div class="small">${marks[k].length} papers</div><div class="progress"><div class="bar" style="width:${avg(k)}%"></div></div></div>`).join('');
+ renderStudyChart();renderSubjectChart();renderMarksChart()}
+function renderStudyChart(){destroy(studyChart);let a=studyPeriod==='all'?study:study.slice(-Number(studyPeriod));studyChart=new Chart($('studyChart'),{type:'line',data:{labels:a.map(x=>labelDate(x.date)),datasets:[{label:'Hours',data:a.map(x=>x.hours),borderColor:'#b83261',backgroundColor:'#b8326130',fill:true,tension:.35}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}}}})}
+function renderSubjectChart(){destroy(subjectChart);let ds=dates().slice(-30);subjectChart=new Chart($('subjectChart'),{type:'bar',data:{labels:ds.map(labelDate),datasets:Object.entries(SUBJECTS).map(([k,s])=>({label:s.name,data:ds.map(d=>Number(subjectTime[k]?.[d]||0)),backgroundColor:k==='bio'?'#d85c82':k==='phy'?'#b75b88':'#c94c70',borderRadius:6}))},options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true}}}})}
+function renderSubjectPeriodChart(){destroy(subjectPeriodChart);let ds=dates();ds=subjectPeriod==='all'?ds:ds.slice(-Number(subjectPeriod));subjectPeriodChart=new Chart($('subjectPeriodChart'),{type:'line',data:{labels:ds.map(labelDate),datasets:Object.entries(SUBJECTS).map(([k,s])=>({label:s.name,data:ds.map(d=>Number(subjectTime[k]?.[d]||0)),borderColor:k==='bio'?'#d85c82':k==='phy'?'#b75b88':'#c94c70',tension:.35}))},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}}}})}
+function renderMarksChart(){destroy(marksChart);marksChart=new Chart($('marksChart'),{type:'bar',data:{labels:Object.values(SUBJECTS).map(s=>s.name),datasets:[{label:'Average %',data:Object.keys(SUBJECTS).map(avg),backgroundColor:['#d85c82','#b75b88','#c94c70'],borderRadius:12}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100}}}})}
+function renderPaperChart(){destroy(paperChart);let r=[];Object.entries(SUBJECTS).forEach(([k,s])=>(marks[k]||[]).forEach(p=>r.push({n:s.name+' · '+p.name,v:pct(p)})));paperChart=new Chart($('paperChart'),{type:'bar',data:{labels:r.map(x=>x.n),datasets:[{label:'Paper %',data:r.map(x=>x.v),backgroundColor:'#d85c82',borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,scales:{x:{beginAtZero:true,max:100}}}})}
+function renderAll(){renderDashboard();renderDaily();renderSubjectTime();renderEditor();renderPaperChart()}
+function setStudyPeriod(p,b){studyPeriod=p;document.querySelectorAll('#dashboard .period button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderStudyChart()}
 function setSubjectPeriod(p,b){subjectPeriod=p;document.querySelectorAll('#subjectTime .period button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderSubjectPeriodChart()}
+function reveal(){$('secretNote').classList.remove('hidden')}
 
-function reveal(){$('secretNote').classList.remove('hidden');document.querySelector('.secret').style.background='linear-gradient(135deg,#8c2850,#df638d,#6f203d)'}
-
-/* ---------- LIVE REFRESH ---------- */
-let timer;
-function startRefresh(){clearInterval(timer);timer=setInterval(()=>{if(!document.hidden&&!busy)loadAll()},10000)}
-renderAll();loadAll();startRefresh();
-window.addEventListener('focus',()=>loadAll());
-window.addEventListener('online',()=>loadAll());
+localLoad();renderAll();
 </script>
 </body>
 </html>
