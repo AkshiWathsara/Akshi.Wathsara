@@ -124,32 +124,70 @@ function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave(
 function editPaper(k,i,f,v){if(f==='name')marks[k][i].name=v;else marks[k][i][f]=Math.max(0,Number(v)||0);localSave();renderAll()}
 function deletePaper(k,i){marks[k].splice(i,1);localSave();renderAll()}
 
-/* Manual cloud save */
+/* Manual cloud save — deliberately does NOT use upsert/onConflict.
+   Your existing Supabase tables do not have UNIQUE constraints on the
+   conflict columns, so we first look for the row and then UPDATE/INSERT. */
+async function updateOrInsert(table, match, row){
+ let found=await db.from(table).select('id').match(match).limit(1);
+ if(found.error)throw found.error;
+ if(found.data && found.data.length){
+   const id=found.data[0].id;
+   if(id!==undefined && id!==null){
+     let u=await db.from(table).update(row).eq('id',id);
+     if(u.error)throw u.error;
+   }else{
+     let u=await db.from(table).update(row).match(match);
+     if(u.error)throw u.error;
+   }
+ }else{
+   let ins=await db.from(table).insert(row);
+   if(ins.error)throw ins.error;
+ }
+}
+
 async function saveToCloud(){
  setStatus('☁️ Saving everything to cloud…');
  try{
   for(const x of study){
-   let q=await db.from('study_sessions').upsert({study_date:x.date,hours:Number(x.hours)||0},{onConflict:'study_date'});
-   if(q.error)throw q.error;
+   await updateOrInsert(
+    'study_sessions',
+    {study_date:x.date},
+    {study_date:x.date,hours:Number(x.hours)||0}
+   );
   }
+
   for(const k of Object.keys(SUBJECTS)){
    for(const d of Object.keys(subjectTime[k]||{})){
-    let q=await db.from('subject_study_sessions').upsert({study_date:d,subject:SUBJECTS[k].name,hours:Number(subjectTime[k][d])||0},{onConflict:'study_date,subject'});
-    if(q.error)throw q.error;
+    await updateOrInsert(
+     'subject_study_sessions',
+     {study_date:d,subject:SUBJECTS[k].name},
+     {study_date:d,subject:SUBJECTS[k].name,hours:Number(subjectTime[k][d])||0}
+    );
    }
   }
-  /* Replace cloud papers with local paper set safely by deleting only known subjects */
+
+  /* Replace cloud papers with the current local paper list for each subject. */
   for(const k of Object.keys(SUBJECTS)){
    let del=await db.from('subject_papers').delete().eq('subject',SUBJECTS[k].name);
    if(del.error)throw del.error;
+
    if(marks[k].length){
-    let rows=marks[k].map(p=>({subject:SUBJECTS[k].name,paper_name:p.name||'Paper',marks:Number(p.mark)||0,max_marks:Number(p.max)||100}));
+    let rows=marks[k].map(p=>({
+     subject:SUBJECTS[k].name,
+     paper_name:p.name||'Paper',
+     marks:Number(p.mark)||0,
+     max_marks:Number(p.max)||100
+    }));
     let ins=await db.from('subject_papers').insert(rows);
     if(ins.error)throw ins.error;
    }
   }
+
   setStatus('💗 Everything is safely saved to the cloud!');
- }catch(e){console.error(e);setStatus('❌ Cloud save failed: '+(e.message||'Check Supabase permissions/table names'))}
+ }catch(e){
+  console.error('Supabase cloud save error:',e);
+  setStatus('❌ Cloud save failed: '+(e.message||'Unknown Supabase error'));
+ }
 }
 async function loadFromCloud(){
  setStatus('↻ Loading latest cloud data…');
