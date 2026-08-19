@@ -8,22 +8,77 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap');
-*{box-sizing:border-box}body{margin:0;color:#54283b;font-family:"DM Sans",sans-serif;background:radial-gradient(circle at 10% 0,#fff,transparent 28%),linear-gradient(135deg,#fff7fa,#fde7ef 50%,#fff8f2);min-height:100vh}
-.container{max-width:1250px;margin:auto;padding:18px 16px 60px}.hero{position:relative;overflow:hidden;text-align:center;padding:55px 20px 45px;border-radius:38px;background:linear-gradient(135deg,#ffd9e7,#fff6f2);box-shadow:0 25px 70px #74304a20}
-.hero h1{font:400 clamp(58px,8vw,100px)/1 "Great Vibes";color:#792640;margin:8px 0}.sub{font:28px "Cormorant Garamond";color:#a23d61}.quote{font:italic 21px "Cormorant Garamond";max-width:650px;margin:18px auto;line-height:1.5}.heart{font-size:32px;animation:pulse 1.5s infinite;color:#c72e61}@keyframes pulse{50%{transform:scale(1.25)}}.float{position:absolute;font-size:30px;opacity:.65;animation:float 6s ease-in-out infinite}@keyframes float{50%{transform:translateY(-35px) rotate(12deg)}}
-.nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:20px 0}.nav button,.period button,.cloud button{border:0;border-radius:999px;padding:11px 17px;background:#fff;color:#842a4b;font-weight:700;cursor:pointer;box-shadow:0 7px 25px #7a294118}.nav button.active,.nav button:hover,.period button.active{background:#b83261;color:#fff}
-.cloud{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}.cloud button.save{background:#b83261;color:#fff}.cloud button.load{background:#fff}.cloudStatus{text-align:center;font-size:13px;color:#8e6474;margin-bottom:12px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:#ffffffd8;border:1px solid #fff;border-radius:24px;box-shadow:0 15px 50px #6d284410;padding:20px;backdrop-filter:blur(10px)}.stat .label{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#9b697a}.stat .value{font:700 34px "Cormorant Garamond";color:#8b2c4e;margin-top:5px}
-.title{font:700 35px "Cormorant Garamond";color:#7b2947;margin:30px 0 12px}.two{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.chart{height:350px}
-.entry{display:grid;grid-template-columns:1.1fr 120px 110px 80px;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid #f1dfe5}input{width:100%;border:1px solid #ebd1da;border-radius:11px;padding:10px;background:#fff;color:#593042;font:inherit}
-button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;color:#fff;font-weight:700;cursor:pointer}.soft{background:#f7e0e8!important;color:#963052!important}
-.subject{background:linear-gradient(145deg,#fff,#fff0f5);border:1px solid #f1d4df;border-radius:22px;padding:18px;overflow:hidden}.subject h3{font:700 28px "Cormorant Garamond";margin:0 0 8px;color:#812b4b}.percent{font-size:32px;font-weight:700;color:#b43260}.progress{height:9px;border-radius:99px;background:#f3dce4;overflow:hidden;margin-top:8px}.bar{height:100%;background:linear-gradient(90deg,#cb3d6b,#ee91ad);border-radius:99px}
-.paper{display:grid;grid-template-columns:1.3fr 85px 85px 70px 38px;gap:7px;align-items:center;padding:8px 0;border-bottom:1px dashed #ead2da}.add{border:0;border-radius:999px;padding:9px 14px;margin-top:10px;background:#fff;color:#9c3157;font-weight:700;cursor:pointer;box-shadow:0 6px 18px #8b2c4e15}
-.secret{min-height:310px;text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#6f203d,#aa315b,#d66d8d)}.secret h2{font:400 62px "Great Vibes";margin:0}.secret p{line-height:1.7;color:#ffeaf1;max-width:650px;margin:8px auto}.secret button{border:0;border-radius:999px;padding:13px 23px;background:#fff;color:#812b4b;font-weight:700;cursor:pointer}.secret-note{font:32px "Great Vibes";margin-top:18px}.hidden{display:none!important}.small{font-size:13px;color:#936b7b}.empty{text-align:center;padding:15px;color:#aa7c8c;background:#fff8fa;border-radius:13px}.footer{text-align:center;color:#9b6d7e;font:20px "Cormorant Garamond";padding-top:30px}
+*{box-sizing:border-box}
+html{background:#030511}
+body{margin:0;color:#f5eafa;font-family:"DM Sans",sans-serif;background:radial-gradient(circle at 50% -10%,#273767 0%,#111a38 30%,#070b1c 68%,#02030a 100%);min-height:100vh;position:relative;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;inset:-25%;pointer-events:none;z-index:-2;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.8px),radial-gradient(circle,#dce6ff 0 1px,transparent 1.8px),radial-gradient(circle,#fff 0 1.2px,transparent 2px);background-size:97px 121px,151px 173px,211px 239px;background-position:0 0,35px 65px,90px 25px;opacity:.55;animation:starDrift 32s linear infinite}
+body:after{z-index:-1;opacity:.75;background-size:137px 191px,193px 227px,257px 311px;animation:fallingStars 12s linear infinite}
+@keyframes starDrift{to{transform:translate3d(20px,55px,0)}}
+@keyframes fallingStars{from{transform:translate3d(0,-45px,0)}to{transform:translate3d(-35px,190px,0)}}
+.shooting{position:fixed;width:125px;height:2px;background:linear-gradient(90deg,transparent,#fff,#e0d0ff,transparent);transform:rotate(-35deg);opacity:0;z-index:-1;pointer-events:none;filter:drop-shadow(0 0 7px #fff)}
+.s1{top:15%;left:74%;animation:shoot 8s linear infinite 1s}.s2{top:42%;left:12%;animation:shoot 10s linear infinite 4s}.s3{top:67%;left:79%;animation:shoot 12s linear infinite 7s}
+@keyframes shoot{0%,78%{opacity:0;transform:translate(0,0) rotate(-35deg)}82%{opacity:1}100%{opacity:0;transform:translate(-230px,150px) rotate(-35deg)}}
+.container{max-width:1250px;margin:auto;padding:18px 16px 60px}.hero{position:relative;overflow:hidden;text-align:center;padding:55px 20px 45px;border-radius:38px;background:radial-gradient(circle at 50% 20%,#293d78aa,#111a3fee 55%,#090d20f5);border:1px solid #b4a6d533;box-shadow:0 25px 70px #0008}
+.hero h1{font:400 clamp(58px,8vw,100px)/1 "Great Vibes";color:#ffeaf7;text-shadow:0 0 25px #ff9dcc88;margin:8px 0}.sub{font:28px "Cormorant Garamond";color:#e5cde9}.quote{font:italic 21px "Cormorant Garamond";max-width:650px;margin:18px auto;line-height:1.5;color:#ddd8f1}.heart{font-size:32px;animation:pulse 1.5s infinite;color:#ff91c2;text-shadow:0 0 20px #ff91c2}@keyframes pulse{50%{transform:scale(1.25)}}.float{position:absolute;font-size:30px;opacity:.65;animation:float 6s ease-in-out infinite}@keyframes float{50%{transform:translateY(-35px) rotate(12deg)}}
+.nav{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:20px 0}.nav button,.period button,.cloud button{border:1px solid #b8a7d533;border-radius:999px;padding:11px 17px;background:#151b35dd;color:#eadcf4;font-weight:700;cursor:pointer;box-shadow:0 7px 25px #0005}.nav button.active,.nav button:hover,.period button.active{background:#9b477e;color:#fff;box-shadow:0 0 22px #c76aa955}
+.cloud{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}.cloud button.save{background:#9b477e;color:#fff}.cloud button.load{background:#151b35;color:#eadcf4}.cloudStatus{text-align:center;font-size:13px;color:#bdb2d2;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:#0e1428dd;border:1px solid #a69ac72e;border-radius:24px;box-shadow:0 15px 50px #0008;padding:20px;backdrop-filter:blur(12px)}.stat .label{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#aaa3c4}.stat .value{font:700 34px "Cormorant Garamond";color:#f1d9ee;margin-top:5px}
+.title{font:700 35px "Cormorant Garamond";color:#f0d7ee;margin:30px 0 12px;text-shadow:0 0 16px #a66aa644}.two{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.chart{height:350px}
+.entry{display:grid;grid-template-columns:1.1fr 120px 110px 80px;gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid #f1dfe5}input{width:100%;border:1px solid #8d82a64d;border-radius:11px;padding:10px;background:#11172c;color:#f1e8f4;font:inherit}
+button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;color:#fff;font-weight:700;cursor:pointer}.soft{background:#28223c!important;color:#e6bcd4!important}
+.subject{background:linear-gradient(145deg,#11182e,#151326);border:1px solid #a48bbd33;border-radius:22px;padding:18px;overflow:hidden}.subject h3{font:700 28px "Cormorant Garamond";margin:0 0 8px;color:#f0d8ef}.percent{font-size:32px;font-weight:700;color:#ed9bc2}.progress{height:9px;border-radius:99px;background:#28243d;overflow:hidden;margin-top:8px}.bar{height:100%;background:linear-gradient(90deg,#b55c9a,#ef9fc2);border-radius:99px;box-shadow:0 0 12px #dc86b977}
+.paper{display:grid;grid-template-columns:1.3fr 85px 85px 70px 38px;gap:7px;align-items:center;padding:8px 0;border-bottom:1px dashed #76678a55}.add{border:0;border-radius:999px;padding:9px 14px;margin-top:10px;background:#191d36;color:#eabed8;font-weight:700;cursor:pointer;box-shadow:0 6px 18px #0005}
+.secret{min-height:310px;text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#111936,#252650,#4b315d);box-shadow:inset 0 0 70px #0007}.secret:before,.secret:after{content:"♡";position:absolute;font-size:32px;color:#ffd8ec;opacity:.45;animation:secretFloat 4s ease-in-out infinite}.secret:before{left:12%;top:18%}.secret:after{right:12%;bottom:18%;animation-delay:1.5s}.secret h2{font:400 62px "Great Vibes";margin:0;color:#ffe7f3;text-shadow:0 0 18px #ff9acb66}.secret p{line-height:1.7;color:#f9e7f0;max-width:650px;margin:8px auto}.secret button{border:0;border-radius:999px;padding:13px 23px;background:#ffe5f1;color:#64254b;font-weight:700;cursor:pointer;box-shadow:0 0 18px #ff9bc755;transition:transform .2s,box-shadow .2s}.secret button:hover{transform:translateY(-2px);box-shadow:0 0 25px #ff9bc799}.secret-note{font:32px "Great Vibes";line-height:1.35;color:#ffd7eb;margin:18px auto 0;max-width:700px;text-shadow:0 0 16px #ff8fc855;animation:secretReveal .8s ease both}.secret-note small{display:block;font:17px "Cormorant Garamond";margin-top:8px;color:#ead9e5}.secret-heart{display:inline-block;animation:heartBeat 1.5s ease-in-out infinite}.hidden{display:none!important}.small{font-size:13px;color:#a9a0bd}.empty{text-align:center;padding:15px;color:#b9a9c4;background:#14192d;border-radius:13px}.footer{text-align:center;color:#a99db9;font:20px "Cormorant Garamond";padding-top:30px}@keyframes secretFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-12px) rotate(8deg)}}@keyframes secretReveal{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 @media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}}@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.entry{grid-template-columns:1fr 90px 80px 65px}.paper{grid-template-columns:1fr 65px 65px 55px 30px}.hero{padding:40px 15px}.sub{font-size:23px}}
+
+/* Elegant falling tail stars */
+.tail-star{position:fixed;top:-12vh;width:3px;height:3px;border-radius:50%;background:#fff;z-index:-1;pointer-events:none;opacity:0;box-shadow:0 0 7px 2px #fff,0 0 18px 5px #b9cfff}
+.tail-star:after{content:"";position:absolute;right:1px;top:1px;width:95px;height:2px;border-radius:50%;transform-origin:right center;transform:rotate(28deg);background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(197,214,255,.45),transparent);filter:blur(.35px)}
+.tail-star.pink{box-shadow:0 0 7px 2px #ffd6ed,0 0 20px 5px #ff8fc8}
+.tail-star.pink:after{background:linear-gradient(90deg,rgba(255,235,247,.95),rgba(255,145,200,.45),transparent)}
+.tail-star.slow{width:2px;height:2px}
+.ts1{left:9%;animation:tailFall 5.8s linear infinite 0s}.ts2{left:27%;animation:tailFall 7.2s linear infinite 2.2s}.ts3{left:46%;animation:tailFall 6.4s linear infinite 4.1s}.ts4{left:67%;animation:tailFall 8s linear infinite 1.1s}.ts5{left:84%;animation:tailFall 6.1s linear infinite 3.4s}.ts6{left:56%;animation:tailFall 9s linear infinite 6s}.ts7{left:18%;animation:tailFall 10s linear infinite 7s}.ts8{left:76%;animation:tailFall 7.8s linear infinite 8s}
+@keyframes tailFall{
+  0%{transform:translate3d(0,-15vh,0) rotate(-8deg);opacity:0}
+  7%{opacity:.95}
+  22%{opacity:1}
+  72%{opacity:.85}
+  100%{transform:translate3d(-20vw,125vh,0) rotate(-8deg);opacity:0}
+}
+
+/* Tiny romantic couple silhouette — decorative only */
+.couple-scene{position:fixed;right:4vw;bottom:2vh;width:170px;height:145px;z-index:-1;pointer-events:none;opacity:.72;filter:drop-shadow(0 0 14px #ffb4d455)}
+.couple-moon{position:absolute;right:12px;top:3px;width:70px;height:70px;border-radius:50%;background:#fff8d9;box-shadow:0 0 28px #fff5bfaa}
+.couple-moon:after{content:"";position:absolute;left:-10px;top:-4px;width:70px;height:70px;border-radius:50%;background:#0a0e22}
+.couple{position:absolute;bottom:0;width:42px;height:80px}
+.couple.left{left:42px}.couple.right{left:80px}
+.couple .head{position:absolute;top:0;left:9px;width:23px;height:23px;border-radius:50%;background:#0b0c19;box-shadow:0 0 8px #000}
+.couple .body{position:absolute;top:21px;left:7px;width:28px;height:55px;border-radius:18px 18px 5px 5px;background:#090b18}
+.couple.left .body{transform:rotate(4deg)}.couple.right .body{transform:rotate(-4deg)}
+.couple .arm{position:absolute;top:30px;width:9px;height:40px;border-radius:8px;background:#090b18}
+.couple.left .arm{right:-2px;transform:rotate(-35deg)}.couple.right .arm{left:-2px;transform:rotate(35deg)}
+.couple-heart{position:absolute;left:69px;top:40px;color:#ff9dc8;font-size:19px;text-shadow:0 0 12px #ff6fab;animation:coupleHeart 1.8s ease-in-out infinite}
+@keyframes coupleHeart{50%{transform:translateY(-8px) scale(1.15);opacity:1}100%{opacity:.65}}
 </style>
 </head>
 <body>
+
+<div class="couple-scene" aria-hidden="true">
+  <div class="couple-moon"></div>
+  <div class="couple left"><div class="head"></div><div class="body"></div><div class="arm"></div></div>
+  <div class="couple right"><div class="head"></div><div class="body"></div><div class="arm"></div></div>
+  <div class="couple-heart">♥</div>
+</div>
+
+<div class="tail-star ts1"></div>
+<div class="tail-star ts2 pink"></div>
+<div class="tail-star ts3 slow"></div>
+<div class="tail-star ts4 pink"></div>
+<div class="tail-star ts5"></div>
+<div class="tail-star ts6 slow"></div>
+<div class="tail-star ts7 pink"></div>
+<div class="tail-star ts8"></div>
+<div class="shooting s1"></div><div class="shooting s2"></div><div class="shooting s3"></div>
 <div class="container">
 <header class="hero">
 <span class="float" style="left:8%;top:18%">♡</span><span class="float" style="right:10%;top:30%">✦</span><span class="float" style="left:15%;bottom:16%">🌸</span><span class="float" style="right:17%;bottom:15%">♡</span>
@@ -76,7 +131,13 @@ button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;c
 </section>
 
 <section id="secret" class="hidden">
-<div class="panel secret"><div style="font-size:28px">♡ ✦ ♡</div><h2>A tiny secret...</h2><p>Not everything beautiful needs to be said loudly.<br>Some things can simply stay here, between the stars, the books and the little hours.</p><button onclick="reveal()">Open the little secret</button><div id="secretNote" class="secret-note hidden">“I hope one day you realize…<br>this little place was made with you in mind.” ♥</div></div>
+<div class="panel secret">
+<div style="font-size:28px">♡ ✦ <span class="secret-heart">♥</span> ✦ ♡</div>
+<h2>A little secret...</h2>
+<p>Some feelings are sweeter when they stay quietly between the stars.<br>So this little corner can keep one tiny secret safe. ♡</p>
+<button onclick="reveal()">Open if you're curious ♡</button>
+<div id="secretNote" class="secret-note hidden">“If you ever wonder why this little place feels a little warmer…<br>maybe it’s because someone special is quietly part of it.” <span class="secret-heart">♥</span><small>Somewhere between the books, the dreams and the late-night hours.</small></div>
+</div>
 </section>
 <div class="footer">Made quietly, with a little love between the lines. ♡</div>
 </div>
@@ -120,73 +181,92 @@ function addSubjectDay(){let ds=dates(),d=ds.length?new Date(ds[ds.length-1]+'T0
 /* Marks */
 function avg(k){let a=marks[k]||[];if(!a.length)return 0;let m=a.reduce((s,p)=>s+Number(p.mark||0),0),mx=a.reduce((s,p)=>s+Number(p.max||100),0);return mx?Math.round(m/mx*100):0}
 function renderEditor(){$('subjectEditor').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${avg(k)}%</div><div class="small">${marks[k].length} papers</div><div class="progress"><div class="bar" style="width:${avg(k)}%"></div></div>${marks[k].length?marks[k].map((p,i)=>`<div class="paper"><input value="${safe(p.name)}" oninput="editPaper('${k}',${i},'name',this.value)"><input type="number" min="0" value="${p.mark}" oninput="editPaper('${k}',${i},'mark',this.value)"><input type="number" min="1" value="${p.max}" oninput="editPaper('${k}',${i},'max',this.value)"><b>${pct(p)}%</b><button class="soft" style="border:0;border-radius:9px;padding:7px" onclick="deletePaper('${k}',${i})">×</button></div>`).join(''):'<div class="empty">No papers yet ♡</div>'}<button class="add" onclick="addPaper('${k}')">＋ Add paper</button></div>`).join('')}
-function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave();renderAll()}
-function editPaper(k,i,f,v){if(f==='name')marks[k][i].name=v;else marks[k][i][f]=Math.max(0,Number(v)||0);localSave();renderAll()}
+function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave();renderEditor();renderPaperChart()}
+function editPaper(k,i,f,v){
+  if(!marks[k] || !marks[k][i]) return;
+  if(f==='name'){
+    marks[k][i].name=v;
+  }else if(f==='mark'){
+    marks[k][i].mark=Math.max(0,Number(v)||0);
+  }else if(f==='max'){
+    marks[k][i].max=Math.max(1,Number(v)||1);
+  }
+  // IMPORTANT: do not re-render the editor while typing.
+  // Re-rendering replaces the input element and causes only the first
+  // character to be accepted.
+  localSave();
+  const subjectBox = document.querySelectorAll('#subjectEditor .subject')[Object.keys(SUBJECTS).indexOf(k)];
+  if(subjectBox){
+    const paperRows = subjectBox.querySelectorAll('.paper');
+    const row = paperRows[i];
+    if(row){
+      const percentEl = row.querySelector('b');
+      if(percentEl) percentEl.textContent = pct(marks[k][i]) + '%';
+    }
+    const percentEl = subjectBox.querySelector('.percent');
+    if(percentEl) percentEl.textContent = avg(k) + '%';
+    const bar = subjectBox.querySelector('.bar');
+    if(bar) bar.style.width = avg(k) + '%';
+  }
+}
 function deletePaper(k,i){marks[k].splice(i,1);localSave();renderAll()}
 
-/* Manual cloud save — deliberately does NOT use upsert/onConflict.
-   Your existing Supabase tables do not have UNIQUE constraints on the
-   conflict columns, so we first look for the row and then UPDATE/INSERT. */
+/* Manual cloud save — works WITHOUT ON CONFLICT/UPSERT.
+   Your Supabase tables currently do not have the UNIQUE constraints
+   required by upsert(), which caused the previous save error. */
 async function updateOrInsert(table, match, row){
- let found=await db.from(table).select('id').match(match).limit(1);
+ const found=await db.from(table).select('id').match(match).limit(1);
  if(found.error)throw found.error;
  if(found.data && found.data.length){
    const id=found.data[0].id;
-   if(id!==undefined && id!==null){
-     let u=await db.from(table).update(row).eq('id',id);
-     if(u.error)throw u.error;
-   }else{
-     let u=await db.from(table).update(row).match(match);
-     if(u.error)throw u.error;
-   }
+   const q=await db.from(table).update(row).eq('id',id);
+   if(q.error)throw q.error;
  }else{
-   let ins=await db.from(table).insert(row);
-   if(ins.error)throw ins.error;
+   const q=await db.from(table).insert(row);
+   if(q.error)throw q.error;
  }
 }
-
 async function saveToCloud(){
  setStatus('☁️ Saving everything to cloud…');
  try{
+  // Daily total study time
   for(const x of study){
-   await updateOrInsert(
-    'study_sessions',
+   await updateOrInsert('study_sessions',
     {study_date:x.date},
-    {study_date:x.date,hours:Number(x.hours)||0}
-   );
+    {study_date:x.date,hours:Number(x.hours)||0});
   }
 
+  // Separate Biology / Physics / Chemistry study time
   for(const k of Object.keys(SUBJECTS)){
    for(const d of Object.keys(subjectTime[k]||{})){
-    await updateOrInsert(
-     'subject_study_sessions',
+    await updateOrInsert('subject_study_sessions',
      {study_date:d,subject:SUBJECTS[k].name},
-     {study_date:d,subject:SUBJECTS[k].name,hours:Number(subjectTime[k][d])||0}
-    );
+     {study_date:d,subject:SUBJECTS[k].name,hours:Number(subjectTime[k][d])||0});
    }
   }
 
-  /* Replace cloud papers with the current local paper list for each subject. */
+  // Replace only the three tracked subjects' paper records.
+  // No ON CONFLICT is used here.
   for(const k of Object.keys(SUBJECTS)){
-   let del=await db.from('subject_papers').delete().eq('subject',SUBJECTS[k].name);
+   const del=await db.from('subject_papers').delete().eq('subject',SUBJECTS[k].name);
    if(del.error)throw del.error;
-
    if(marks[k].length){
-    let rows=marks[k].map(p=>({
-     subject:SUBJECTS[k].name,
-     paper_name:p.name||'Paper',
-     marks:Number(p.mark)||0,
-     max_marks:Number(p.max)||100
+    const rows=marks[k].map(p=>({
+      subject:SUBJECTS[k].name,
+      paper_name:p.name||'Paper',
+      marks:Number(p.mark)||0,
+      paper_date:null
     }));
-    let ins=await db.from('subject_papers').insert(rows);
+    const ins=await db.from('subject_papers').insert(rows);
     if(ins.error)throw ins.error;
    }
   }
 
+  localSave();
   setStatus('💗 Everything is safely saved to the cloud!');
  }catch(e){
   console.error('Supabase cloud save error:',e);
-  setStatus('❌ Cloud save failed: '+(e.message||'Unknown Supabase error'));
+  setStatus('❌ Cloud save failed: '+(e.message||'Check Supabase permissions/table names'));
  }
 }
 async function loadFromCloud(){
@@ -199,7 +279,7 @@ async function loadFromCloud(){
   subjectTime={bio:{},phy:{},chem:{}};
   (b.data||[]).forEach(x=>{let k=norm(x.subject);if(k)subjectTime[k][x.study_date]=Number(x.hours)||0});
   marks={bio:[],phy:[],chem:[]};
-  (c.data||[]).forEach(x=>{let k=norm(x.subject);if(k)marks[k].push({name:x.paper_name||'Paper',mark:Number(x.marks)||0,max:Number(x.max_marks)||100})});
+  (c.data||[]).forEach(x=>{let k=norm(x.subject);if(k)marks[k].push({name:x.paper_name||'Paper',mark:Number(x.marks)||0,max:100})});
   localSave();setStatus('🟢 Cloud data loaded successfully');renderAll();
  }catch(e){console.error(e);setStatus('❌ Cloud load failed: '+(e.message||'Check Supabase'))}
 }
