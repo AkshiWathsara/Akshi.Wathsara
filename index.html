@@ -90,6 +90,52 @@ button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;c
   .profile-mini-heart{top:54px;right:10px;font-size:13px}.profile-lovely-note{top:76px;right:4px;min-width:125px;padding:5px 8px}.profile-lovely-note b{font-size:14px}.profile-lovely-note span{font-size:11px}
 }
 
+
+
+
+
+.subject-mark-graphs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 22px}
+.mark-graph-card{border-radius:18px;padding:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);box-shadow:0 8px 30px rgba(0,0,0,.14)}
+.biology-graph{border-color:rgba(170,235,180,.30)}
+.physics-graph{border-color:rgba(210,180,145,.30)}
+.chemistry-graph{border-color:rgba(150,205,235,.30)}
+.graph-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:800}
+.graph-head small{font-size:11px;opacity:.65;font-weight:500}
+.mark-graph-card canvas{width:100%;height:190px;display:block}
+@media(max-width:850px){.subject-mark-graphs{grid-template-columns:1fr}}
+
+
+/* A/L countdown visibility enhancement only */
+.goal-exam-addon{grid-template-columns:1fr !important;margin:22px 0}
+.goal-exam-addon .addon-card{min-height:190px;padding:24px;text-align:center;border:1px solid rgba(255,190,225,.25);box-shadow:0 12px 38px rgba(0,0,0,.22)}
+.goal-exam-addon .addon-card .addon-title{font-size:25px}
+.goal-exam-addon .exam-count{font-size:42px;line-height:1.15;margin:18px 0 8px;font-weight:900;text-shadow:0 0 18px rgba(255,170,220,.45)}
+.goal-exam-addon .addon-small{font-size:14px}
+.goal-exam-addon .goal-actions{justify-content:center}
+
+
+.goal-exam-addon .exam-count{font-size:clamp(30px,5vw,52px)!important;font-weight:900!important;letter-spacing:.5px;line-height:1.15!important}
+.goal-exam-addon .addon-card{background:rgba(255,255,255,.065)!important}
+
+
+.mark-graph-card canvas{height:230px!important}
+.mark-graph-card{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.025))}
+
+
+/* Daily Improvement card — additive feature only */
+.daily-improvement-card{margin-top:16px}
+.improve-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.improve-stat{padding:18px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.improve-label{font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.68}
+.improve-time{font-size:30px;font-weight:800;margin-top:5px}
+.improve-arrow{font-size:24px;opacity:.7;display:flex;align-items:center;justify-content:center}
+.improve-delta{font-size:30px;font-weight:900;margin-top:8px}
+.improve-positive{color:#9BE7B0;text-shadow:0 0 14px rgba(155,231,176,.28)}
+.improve-negative{color:#f2a5b8;text-shadow:0 0 14px rgba(242,165,184,.22)}
+.improve-neutral{color:#d9cfe1}
+.improve-message{margin-top:10px;font:22px "Great Vibes";color:#f3d8ea}
+@media(max-width:700px){.improve-wrap{grid-template-columns:1fr}.improve-arrow{transform:rotate(90deg)}}
+
 </style>
 </head>
 <body>
@@ -136,14 +182,63 @@ button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;c
 <div class="grid">
 <div class="card stat">⏰<div class="label">Total Study Time</div><div class="value" id="total">0h 00m</div></div>
 <div class="card stat">🌸<div class="label">Average / Day</div><div class="value" id="avg">0h 00m</div></div>
-<div class="card stat">🏆<div class="label">Best Day</div><div class="value" id="best">—</div></div>
+<div class="card stat">🏆<div class="label">Best Day</div><div class="value" id="best">—</div><div class="small" id="bestDate">—</div></div>
 <div class="card stat">💗<div class="label">Days Tracked</div><div class="value" id="daysCount">0</div></div>
 </div>
+<div class="goal-exam-addon">
+<div class="panel addon-card">
+<div class="addon-title">🎓 A/L Exam Countdown</div>
+<div class="addon-small">One overall countdown — not subject-wise.</div>
+<div class="exam-count" id="addonExamCount">Set your A/L date ♡</div>
+<div class="addon-small" id="addonExamDate"></div>
+<div class="goal-actions"><input id="addonExamInput" type="datetime-local"><button class="action" onclick="addonSetExam()">Update Date</button><button class="soft" onclick="addonClearExam()">Clear</button></div>
+</div>
+</div>
+
 <h2 class="title">♡ Study Time</h2>
 <div class="panel"><div class="period">
 <button class="active" onclick="setStudyPeriod(7,this)">7 Days</button><button onclick="setStudyPeriod(30,this)">30 Days</button><button onclick="setStudyPeriod(90,this)">90 Days</button><button onclick="setStudyPeriod('all',this)">Whole Journey</button>
 </div><div class="chart"><canvas id="studyChart"></canvas></div></div>
-<div class="two" style="margin-top:16px"><div class="panel"><h2 class="title" style="margin-top:0">📊 Subject Study Time</h2><div class="chart"><canvas id="subjectChart"></canvas></div></div><div class="panel"><h2 class="title" style="margin-top:0">✨ Little Numbers</h2><p class="small">Most productive day</p><h2 id="bestFull">—</h2><p class="small">Subject hours</p><h2 id="subjectTotal">0h 00m</h2><p class="small">Papers recorded</p><h2 id="paperCount">0</h2></div></div>
+<div class="panel daily-improvement-card">
+  <h2 class="title" style="margin-top:0">📈 Daily Improvement</h2>
+  <div class="improve-wrap">
+    <div class="improve-stat">
+      <div class="improve-label">Previous Day</div>
+      <div class="improve-time" id="improvePrevious">—</div>
+    </div>
+    <div class="improve-stat">
+      <div class="improve-label">Latest Day</div>
+      <div class="improve-time" id="improveLatest">—</div>
+    </div>
+  </div>
+  <div class="improve-stat" style="margin-top:12px;text-align:center">
+    <div class="improve-label">Change</div>
+    <div class="improve-delta improve-neutral" id="improveDelta">—</div>
+    <div class="small" id="improvePercent">—</div>
+    <div class="improve-message" id="improveMessage"></div>
+  </div>
+</div>
+
+
+<h2 class="title">♡ Subject Marks Graphs</h2>
+<div class="subject-mark-graphs">
+  <div class="mark-graph-card biology-graph">
+    <div class="graph-head"><span>🧬 Biology</span><small>Paper marks</small></div>
+    <canvas id="biologyMarksGraph"></canvas>
+  </div>
+  <div class="mark-graph-card physics-graph">
+    <div class="graph-head"><span>⚛️ Physics</span><small>Paper marks</small></div>
+    <canvas id="physicsMarksGraph"></canvas>
+  </div>
+  <div class="mark-graph-card chemistry-graph">
+    <div class="graph-head"><span>🧪 Chemistry</span><small>Paper marks</small></div>
+    <canvas id="chemistryMarksGraph"></canvas>
+  </div>
+</div>
+
+
+<div class="two" style="margin-top:16px"><div class="panel"><h2 class="title" style="margin-top:0">📊 Subject Study Time</h2><div class="chart"><canvas id="subjectChart"></canvas></div></div><div class="panel"><h2 class="title" style="margin-top:0">✨ Little Numbers</h2><p class="small">Most productive day</p><h2 id="bestFull">—</h2><p class="small">Subject hours</p><h2 id="subjectTotal">0h 00m</h2><p class="small">Papers recorded</p><h2 id="paperCount">0</h2></div>
+</div>
 <h2 class="title">📚 Marks at a glance</h2><div class="three" id="subjectCards"></div>
 <div class="panel" style="margin-top:16px"><h2 class="title" style="margin-top:0">📈 Subject Performance</h2><div class="chart"><canvas id="marksChart"></canvas></div></div>
 </section>
@@ -193,16 +288,45 @@ function setStatus(t){$('cloudStatus').textContent=t}
 function showPage(id,b){document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderAll()}
 
 /* Local storage */
-function localSave(){localStorage.setItem('lp_study',JSON.stringify(study));localStorage.setItem('lp_subjectTime',JSON.stringify(subjectTime));localStorage.setItem('lp_marks',JSON.stringify(marks));setStatus('🟢 Changes saved on this device · ☁️ Press SAVE TO CLOUD when ready')}
+function localSave(){
+localStorage.setItem('lp_study',JSON.stringify(study));
+localStorage.setItem('lp_subjectTime',JSON.stringify(subjectTime));
+localStorage.setItem('lp_marks',JSON.stringify(marks));
+setStatus('🟢 Changes saved on this device · ☁️ Press SAVE TO CLOUD when ready')
+}
+function getDeletedStudyDates(){
+try{return JSON.parse(localStorage.getItem('lp_deleted_study_dates')||'[]')}catch(e){return[]}
+}
+function setDeletedStudyDates(a){localStorage.setItem('lp_deleted_study_dates',JSON.stringify([...new Set(a)]))}
+function forgetDeletedStudyDate(d){setDeletedStudyDates(getDeletedStudyDates().filter(x=>x!==d))}
 function localLoad(){study=JSON.parse(localStorage.getItem('lp_study')||'[]');subjectTime=JSON.parse(localStorage.getItem('lp_subjectTime')||'{"bio":{},"phy":{},"chem":{}}');marks=JSON.parse(localStorage.getItem('lp_marks')||'{"bio":[],"phy":[],"chem":[]}');if(!subjectTime.bio)subjectTime={bio:{},phy:{},chem:{}};if(!marks.bio)marks={bio:[],phy:[],chem:[]}}
 function norm(s){s=String(s||'').toLowerCase();if(s.includes('bio'))return'bio';if(s.includes('phys'))return'phy';if(s.includes('chem'))return'chem';return null}
 
 /* Daily */
 function renderDaily(){$('dailyRows').innerHTML=study.map((x,i)=>`<div class="entry"><input type="date" value="${x.date}" onchange="changeDate(${i},this.value)"><input type="number" min="0" max="24" step=".25" value="${Number(x.hours)||0}" oninput="editHours(${i},this.value)" onblur="editHours(${i},this.value)"><span class="small">${fmt(x.hours)}</span><button class="soft" style="border:0;border-radius:11px;padding:10px;cursor:pointer" onclick="deleteDay(${i})">Delete</button></div>`).join('')||'<div class="empty">No days yet ♡</div>'}
 function editHours(i,v){study[i].hours=hours(v);localSave();renderDashboard()}
-function changeDate(i,v){if(!v)return;if(study.some((x,j)=>j!==i&&x.date===v)){alert('That date already exists.');renderDaily();return}study[i].date=v;study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()}
-function addDay(){let d=study.length?new Date(study[study.length-1].date+'T00:00:00'):new Date();d.setDate(d.getDate()+1);let date=d.toISOString().slice(0,10);while(study.some(x=>x.date===date)){d.setDate(d.getDate()+1);date=d.toISOString().slice(0,10)}study.push({date,hours:0});study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()}
-function deleteDay(i){study.splice(i,1);localSave();renderAll()}
+function changeDate(i,v){
+if(!v)return;
+if(study.some((x,j)=>j!==i&&x.date===v)){alert('That date already exists.');renderDaily();return}
+const oldDate=study[i].date;
+if(oldDate!==v){const queued=getDeletedStudyDates();queued.push(oldDate);setDeletedStudyDates(queued);forgetDeletedStudyDate(v);}
+study[i].date=v;study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()
+}
+function addDay(){
+let d=study.length?new Date(study[study.length-1].date+'T00:00:00'):new Date();
+d.setDate(d.getDate()+1);
+let date=d.toISOString().slice(0,10);
+while(study.some(x=>x.date===date)){d.setDate(d.getDate()+1);date=d.toISOString().slice(0,10)}
+forgetDeletedStudyDate(date);
+study.push({date,hours:0});study.sort((a,b)=>a.date.localeCompare(b.date));localSave();renderAll()
+}
+function deleteDay(i){
+if(!study[i])return;
+const deletedDate=study[i].date;
+study.splice(i,1);
+const queued=getDeletedStudyDates();queued.push(deletedDate);setDeletedStudyDates(queued);
+localSave();renderAll()
+}
 
 /* Subject time */
 function dates(){let s=new Set(study.map(x=>x.date));Object.values(subjectTime).forEach(o=>Object.keys(o).forEach(d=>s.add(d)));return[...s].sort()}
@@ -213,7 +337,7 @@ function addSubjectDay(){let ds=dates(),d=ds.length?new Date(ds[ds.length-1]+'T0
 /* Marks */
 function avg(k){let a=marks[k]||[];if(!a.length)return 0;let m=a.reduce((s,p)=>s+Number(p.mark||0),0),mx=a.reduce((s,p)=>s+Number(p.max||100),0);return mx?Math.round(m/mx*100):0}
 function renderEditor(){$('subjectEditor').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>`<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent">${avg(k)}%</div><div class="small">${marks[k].length} papers</div><div class="progress"><div class="bar" style="width:${avg(k)}%"></div></div>${marks[k].length?marks[k].map((p,i)=>`<div class="paper"><input value="${safe(p.name)}" oninput="editPaper('${k}',${i},'name',this.value)"><input type="number" min="0" value="${p.mark}" oninput="editPaper('${k}',${i},'mark',this.value)"><input type="number" min="1" value="${p.max}" oninput="editPaper('${k}',${i},'max',this.value)"><b>${pct(p)}%</b><button class="soft" style="border:0;border-radius:9px;padding:7px" onclick="deletePaper('${k}',${i})">×</button></div>`).join(''):'<div class="empty">No papers yet ♡</div>'}<button class="add" onclick="addPaper('${k}')">＋ Add paper</button></div>`).join('')}
-function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave();renderEditor();renderPaperChart()}
+function addPaper(k){marks[k].push({name:'New Paper',mark:0,max:100});localSave();renderEditor();renderPaperChart();if(window.renderSubjectMarkGraphs)renderSubjectMarkGraphs()}
 function editPaper(k,i,f,v){
   if(!marks[k] || !marks[k][i]) return;
   if(f==='name'){
@@ -227,6 +351,7 @@ function editPaper(k,i,f,v){
   // Re-rendering replaces the input element and causes only the first
   // character to be accepted.
   localSave();
+  if(window.renderSubjectMarkGraphs)renderSubjectMarkGraphs();
   const subjectBox = document.querySelectorAll('#subjectEditor .subject')[Object.keys(SUBJECTS).indexOf(k)];
   if(subjectBox){
     const paperRows = subjectBox.querySelectorAll('.paper');
@@ -241,7 +366,7 @@ function editPaper(k,i,f,v){
     if(bar) bar.style.width = avg(k) + '%';
   }
 }
-function deletePaper(k,i){marks[k].splice(i,1);localSave();renderAll()}
+function deletePaper(k,i){marks[k].splice(i,1);localSave();renderAll();if(window.renderSubjectMarkGraphs)renderSubjectMarkGraphs()}
 
 /* Manual cloud save — works WITHOUT ON CONFLICT/UPSERT.
    Your Supabase tables currently do not have the UNIQUE constraints
@@ -261,6 +386,15 @@ async function updateOrInsert(table, match, row){
 async function saveToCloud(){
  setStatus('☁️ Saving everything to cloud…');
  try{
+  // Permanently delete daily study rows that the user deleted locally.
+  const deletedStudyDates=getDeletedStudyDates();
+  for(const d of deletedStudyDates){
+   const q=await db.from('study_sessions').delete().eq('study_date',d);
+   if(q.error)throw q.error;
+   const q2=await db.from('subject_study_sessions').delete().eq('study_date',d);
+   if(q2.error)throw q2.error;
+  }
+
   // Daily total study time
   for(const x of study){
    await updateOrInsert('study_sessions',
@@ -295,6 +429,7 @@ async function saveToCloud(){
   }
 
   localSave();
+  setDeletedStudyDates([]);
   setStatus('💗 Everything is safely saved to the cloud!');
  }catch(e){
   console.error('Supabase cloud save error:',e);
@@ -312,7 +447,7 @@ async function loadFromCloud(){
   (b.data||[]).forEach(x=>{let k=norm(x.subject);if(k)subjectTime[k][x.study_date]=Number(x.hours)||0});
   marks={bio:[],phy:[],chem:[]};
   (c.data||[]).forEach(x=>{let k=norm(x.subject);if(k)marks[k].push({name:x.paper_name||'Paper',mark:Number(x.marks)||0,max:100})});
-  localSave();setStatus('🟢 Cloud data loaded successfully');renderAll();
+  localSave();setStatus('🟢 Cloud data loaded successfully');renderAll();if(window.refreshSubjectMarksGraphs)window.refreshSubjectMarksGraphs();if(window.renderSubjectMarkGraphs)renderSubjectMarkGraphs();
  }catch(e){console.error(e);setStatus('❌ Cloud load failed: '+(e.message||'Check Supabase'))}
 }
 
@@ -320,7 +455,7 @@ async function loadFromCloud(){
 function destroy(x){if(x)x.destroy()}
 function renderDashboard(){
  let total=study.reduce((s,x)=>s+Number(x.hours||0),0),av=study.length?total/study.length:0,b=study.reduce((a,x)=>x.hours>a.hours?x:a,{hours:-1});
- $('total').textContent=fmt(total);$('avg').textContent=fmt(av);$('daysCount').textContent=study.length;$('best').textContent=b.hours>=0?fmt(b.hours):'—';$('bestFull').textContent=b.hours>=0?labelDate(b.date)+' · '+fmt(b.hours):'—';
+ $('total').textContent=fmt(total);$('avg').textContent=fmt(av);$('daysCount').textContent=study.length;$('best').textContent=b.hours>=0?fmt(b.hours):'—';$('bestDate').textContent=b.hours>=0?labelDate(b.date):'—';$('bestFull').textContent=b.hours>=0?labelDate(b.date)+' · '+fmt(b.hours):'—';
  let st=Object.values(subjectTime).reduce((s,o)=>s+Object.values(o).reduce((a,v)=>a+Number(v||0),0),0);$('subjectTotal').textContent=fmt(st);$('paperCount').textContent=Object.values(marks).reduce((s,a)=>s+a.length,0);
  $('subjectCards').innerHTML=Object.entries(SUBJECTS).map(([k,s])=>{const c=k==='bio'?'#9BE7B0':k==='phy'?'#C8A98B':'#9FD8F5';return `<div class="subject"><h3>${s.icon} ${s.name}</h3><div class="percent" style="color:${c}">${avg(k)}%</div><div class="small">${marks[k].length} papers</div><div class="progress"><div class="bar" style="width:${avg(k)}%;background:${c};box-shadow:0 0 12px ${c}77"></div></div></div>`}).join('');
  renderStudyChart();renderSubjectChart();renderMarksChart()}
@@ -329,12 +464,233 @@ function renderSubjectChart(){destroy(subjectChart);let ds=dates().slice(-30);su
 function renderSubjectPeriodChart(){destroy(subjectPeriodChart);let ds=dates();ds=subjectPeriod==='all'?ds:ds.slice(-Number(subjectPeriod));subjectPeriodChart=new Chart($('subjectPeriodChart'),{type:'line',data:{labels:ds.map(labelDate),datasets:Object.entries(SUBJECTS).map(([k,s])=>({label:s.name,data:ds.map(d=>Number(subjectTime[k]?.[d]||0)),borderColor:k==='bio'?'#9BE7B0':k==='phy'?'#C8A98B':'#9FD8F5',tension:.35}))},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true}}}})}
 function renderMarksChart(){destroy(marksChart);marksChart=new Chart($('marksChart'),{type:'bar',data:{labels:Object.values(SUBJECTS).map(s=>s.name),datasets:[{label:'Average %',data:Object.keys(SUBJECTS).map(avg),backgroundColor:['#9BE7B0','#C8A98B','#9FD8F5'],borderRadius:12}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100}}}})}
 function renderPaperChart(){destroy(paperChart);let r=[];Object.entries(SUBJECTS).forEach(([k,s])=>(marks[k]||[]).forEach(p=>r.push({n:s.name+' · '+p.name,v:pct(p)})));paperChart=new Chart($('paperChart'),{type:'bar',data:{labels:r.map(x=>x.n),datasets:[{label:'Paper %',data:r.map(x=>x.v),backgroundColor:r.map(x=>x.n.startsWith('Biology ·')?'#9BE7B0':x.n.startsWith('Physics ·')?'#C8A98B':'#9FD8F5'),borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,scales:{x:{beginAtZero:true,max:100}}}})}
-function renderAll(){renderDashboard();renderDaily();renderSubjectTime();renderEditor();renderPaperChart()}
+function renderAll(){renderDashboard();renderDaily();renderSubjectTime();renderEditor();renderPaperChart();if(window.renderSubjectMarkGraphs)renderSubjectMarkGraphs();if(window.renderDailyImprovement)window.renderDailyImprovement()}
 function setStudyPeriod(p,b){studyPeriod=p;document.querySelectorAll('#dashboard .period button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderStudyChart()}
 function setSubjectPeriod(p,b){subjectPeriod=p;document.querySelectorAll('#subjectTime .period button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderSubjectPeriodChart()}
 function reveal(){$('secretNote').classList.remove('hidden')}
 
 localLoad();renderAll();
 </script>
+<script>
+(function(){
+  const EXAM_KEY='addon_al_exam_date';
+
+  function renderALCountdown(){
+    const box=document.getElementById('addonExamCount');
+    const dateBox=document.getElementById('addonExamDate');
+    const input=document.getElementById('addonExamInput');
+    if(!box||!dateBox||!input)return;
+
+    const raw=localStorage.getItem(EXAM_KEY);
+    if(!raw){
+      box.textContent='Set your A/L exam date ♡';
+      dateBox.textContent='';
+      return;
+    }
+
+    const target=new Date(raw).getTime();
+    if(!Number.isFinite(target)){
+      box.textContent='Please set the exam date again ♡';
+      dateBox.textContent='';
+      return;
+    }
+
+    const diff=target-Date.now();
+    if(diff<=0){
+      box.textContent='🎓 EXAM DAY ♡';
+    }else{
+      let total=Math.floor(diff/1000);
+      const days=Math.floor(total/86400); total%=86400;
+      const hrs=Math.floor(total/3600); total%=3600;
+      const mins=Math.floor(total/60);
+      const secs=total%60;
+      box.textContent=days+' Days · '+String(hrs).padStart(2,'0')+'h · '+String(mins).padStart(2,'0')+'m · '+String(secs).padStart(2,'0')+'s';
+    }
+
+    dateBox.textContent='A/L exam: '+new Date(target).toLocaleString();
+    if(document.activeElement!==input) input.value=raw;
+  }
+
+  window.addonSetExam=function(){
+    const input=document.getElementById('addonExamInput');
+    if(!input||!input.value){
+      alert('Please select your A/L exam date and time.');
+      return;
+    }
+    const target=new Date(input.value);
+    if(!Number.isFinite(target.getTime())){
+      alert('Please choose a valid exam date.');
+      return;
+    }
+    localStorage.setItem(EXAM_KEY,input.value);
+    renderALCountdown();
+  };
+
+  window.addonClearExam=function(){
+    localStorage.removeItem(EXAM_KEY);
+    const input=document.getElementById('addonExamInput');
+    if(input)input.value='';
+    renderALCountdown();
+  };
+
+  window.addEventListener('load',renderALCountdown);
+  setInterval(renderALCountdown,1000);
+  renderALCountdown();
+})();
+</script>
+
+
+
+
+
+<script>
+(function(){
+  const chartRefs = {};
+
+  function renderOne(canvasId, key, label, color){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas || typeof Chart === 'undefined' || typeof marks === 'undefined') return;
+
+    const rows = Array.isArray(marks[key]) ? marks[key] : [];
+    const labels = rows.map((p,i) => String((p && p.name) || ('Paper ' + (i+1))));
+    const values = rows.map(p => {
+      const mark = Number(p && p.mark);
+      const max = Number(p && p.max) || 100;
+      return Number.isFinite(mark) && max > 0
+        ? Math.max(0, Math.min(100, mark / max * 100))
+        : 0;
+    });
+
+    if(chartRefs[key]){
+      chartRefs[key].destroy();
+      chartRefs[key] = null;
+    }
+
+    chartRefs[key] = new Chart(canvas.getContext('2d'), {
+      type:'line',
+      data:{
+        labels,
+        datasets:[{
+          label: label + ' paper %',
+          data: values,
+          borderColor: color,
+          backgroundColor: color + '25',
+          pointBackgroundColor: color,
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          fill: true,
+          tension: 0.35,
+          borderWidth: 3
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        plugins:{
+          legend:{display:true},
+          tooltip:{
+            callbacks:{
+              label:(ctx)=> label + ': ' + Number(ctx.parsed.y).toFixed(0) + '%'
+            }
+          }
+        },
+        scales:{
+          y:{
+            beginAtZero:true,
+            min:0,
+            max:100,
+            ticks:{callback:(v)=>v+'%'}
+          },
+          x:{
+            ticks:{autoSkip:false,maxRotation:35,minRotation:0}
+          }
+        }
+      }
+    });
+  }
+
+  window.refreshSubjectMarksGraphs = function(){
+    renderOne('biologyMarksGraph','bio','Biology','#9BE7B0');
+    renderOne('physicsMarksGraph','phy','Physics','#C8A98B');
+    renderOne('chemistryMarksGraph','chem','Chemistry','#9FD8F5');
+  };
+
+  function waitAndRender(){
+    if(typeof Chart === 'undefined' || typeof marks === 'undefined'){
+      setTimeout(waitAndRender,200);
+      return;
+    }
+    refreshSubjectMarksGraphs();
+  }
+
+  window.addEventListener('load',waitAndRender);
+})();
+</script>
+
+
+
+<script>
+(function(){
+  function fmtImprove(h){
+    h=Number(h)||0;
+    const m=Math.round(Math.abs(h)*60);
+    return Math.floor(m/60)+'h '+String(m%60).padStart(2,'0')+'m';
+  }
+  function renderDailyImprovement(){
+    const prevEl=document.getElementById('improvePrevious');
+    const latestEl=document.getElementById('improveLatest');
+    const deltaEl=document.getElementById('improveDelta');
+    const pctEl=document.getElementById('improvePercent');
+    const msgEl=document.getElementById('improveMessage');
+    if(!prevEl||!latestEl||!deltaEl||!pctEl||!msgEl||typeof study==='undefined') return;
+
+    const rows=Array.isArray(study)
+      ? study.slice().filter(x=>x && x.date).sort((a,b)=>String(a.date).localeCompare(String(b.date)))
+      : [];
+
+    if(rows.length<2){
+      prevEl.textContent=rows.length===1 ? 'No earlier day' : '—';
+      latestEl.textContent=rows.length===1 ? fmtImprove(rows[0].hours) : '—';
+      deltaEl.textContent='—';
+      pctEl.textContent=rows.length===1 ? 'Add another day to compare.' : 'Add at least two study days.';
+      msgEl.textContent='';
+      return;
+    }
+
+    const previous=Number(rows[rows.length-2].hours)||0;
+    const latest=Number(rows[rows.length-1].hours)||0;
+    const delta=latest-previous;
+
+    prevEl.textContent=fmtImprove(previous);
+    latestEl.textContent=fmtImprove(latest);
+
+    deltaEl.classList.remove('improve-positive','improve-negative','improve-neutral');
+    if(delta>0){
+      const pct=previous>0?(delta/previous)*100:null;
+      deltaEl.classList.add('improve-positive');
+      deltaEl.textContent='+'+fmtImprove(delta)+' ↑';
+      pctEl.textContent=pct===null ? 'Previous day was 0h' : '+'+pct.toFixed(1)+'% improvement';
+      msgEl.textContent='You’re moving forward, one day at a time. ♡';
+    }else if(delta<0){
+      const pct=previous>0?(Math.abs(delta)/previous)*100:null;
+      deltaEl.classList.add('improve-negative');
+      deltaEl.textContent='−'+fmtImprove(delta)+' ↓';
+      pctEl.textContent=pct===null ? 'Previous day was 0h' : '−'+pct.toFixed(1)+'% from the previous day';
+      msgEl.textContent='A slower day is still part of the journey. 🌙';
+    }else{
+      deltaEl.classList.add('improve-neutral');
+      deltaEl.textContent='No change →';
+      pctEl.textContent='0.0%';
+      msgEl.textContent='Steady is still strong. ♡';
+    }
+  }
+
+  window.renderDailyImprovement=renderDailyImprovement;
+  window.addEventListener('load',renderDailyImprovement);
+})();
+</script>
+
 </body>
 </html>
