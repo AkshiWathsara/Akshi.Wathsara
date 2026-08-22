@@ -209,6 +209,79 @@ button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;c
 .latest7-name{font-weight:800}
 .latest7-value{margin-left:auto;color:#eadff0;font-weight:700}
 @media(max-width:700px){.latest7-wrap{grid-template-columns:1fr}.latest7-chart{height:270px}}
+
+.random-encouragement{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  max-width:min(720px,92%);
+  margin:16px auto 0;
+  padding:12px 22px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,145,200,.075) 52%,rgba(150,125,255,.075));
+  border:1px solid rgba(255,197,225,.30);
+  color:#ffeaf6;
+  font:600 19px "Cormorant Garamond";
+  letter-spacing:.25px;
+  line-height:1.25;
+  opacity:0;
+  text-shadow:0 0 12px rgba(255,145,200,.28);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.22),
+    0 0 20px rgba(255,130,190,.12),
+    inset 0 0 18px rgba(255,255,255,.035);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.random-encouragement::before{
+  content:"✦";
+  color:#ffb4d5;
+  font-size:14px;
+  text-shadow:0 0 10px #ff8fbe;
+}
+.random-encouragement::after{
+  content:"♡";
+  color:#ffb4d5;
+  font-size:15px;
+  text-shadow:0 0 10px #ff8fbe;
+}
+.random-encouragement.show{
+  animation:encourageIn .8s cubic-bezier(.2,.8,.2,1) both,
+            encourageGlow 2.8s ease-in-out .8s infinite;
+}
+@keyframes encourageIn{
+  from{opacity:0;transform:translateY(10px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes encourageGlow{
+  0%,100%{
+    box-shadow:
+      0 10px 30px rgba(0,0,0,.22),
+      0 0 20px rgba(255,130,190,.12),
+      inset 0 0 18px rgba(255,255,255,.035);
+  }
+  50%{
+    box-shadow:
+      0 12px 34px rgba(0,0,0,.24),
+      0 0 30px rgba(255,130,190,.22),
+      0 0 46px rgba(170,130,255,.10),
+      inset 0 0 20px rgba(255,255,255,.045);
+  }
+}
+@media(max-width:600px){
+  .random-encouragement{
+    margin-top:12px;
+    padding:10px 15px;
+    border-radius:18px;
+    font-size:16px;
+    max-width:94%;
+  }
+}
+
 </style>
 
 <style id="profile-stethoscope-final-fix">
@@ -480,7 +553,7 @@ button.action{border:0;border-radius:11px;padding:10px 13px;background:#b83261;c
 </div>
 <span class="float" style="left:8%;top:18%">♡</span><span class="float" style="right:10%;top:30%">✦</span><span class="float" style="left:15%;bottom:16%">🌸</span><span class="float" style="right:17%;bottom:15%">♡</span>
 <div class="heart">♥</div><h1>A Little Place for You</h1><div class="sub">Your little journey, one day at a time ♡</div>
-<div class="quote">“Some dreams are quietly built, one hour, one paper, one beautiful day at a time.”</div>
+<div class="quote">“Some dreams are quietly built, one hour, one paper, one beautiful day at a time.”</div><div class="random-encouragement" id="randomEncouragement" aria-live="polite"></div>
 </header>
 
 <div class="cloud">
@@ -1057,6 +1130,67 @@ localLoad();renderAll();
 
   window.renderDailyImprovement=renderDailyImprovement;
   window.addEventListener('load',renderDailyImprovement);
+})();
+</script>
+
+
+<script>
+(function(){
+  const wishes={
+    morning:[
+      "🌅  Good morning, beautiful… today is another chance to shine. ♡",
+      "🌸  Good morning, dreamer… your beautiful journey starts again today. ✨",
+      "☀️  Wake up, beautiful… someone is quietly wishing you a lovely day. ♡",
+      "💗  Good morning, Akshi… go make today as beautiful as your smile."
+    ],
+    afternoon:[
+      "☀️  Good afternoon, dreamer… keep going, you’re doing beautifully. ✨",
+      "🌷  A little more effort this afternoon, a little closer to your dream. ♡",
+      "💗  Good afternoon, beautiful… don’t forget someone is cheering for you.",
+      "✨  Keep shining through the afternoon… your dreams are getting closer. ♡"
+    ],
+    evening:[
+      "🌆  Good evening, Akshi… one more little effort before you rest. 💗",
+      "🌙  The day is getting quieter, but your dreams are still waiting. ♡",
+      "🌸  Good evening, beautiful… you did so much today, keep your smile. ✨",
+      "💗  Evening feels a little sweeter knowing someone is proud of you. ♡"
+    ],
+    night:[
+      "🌙  Good night, dreamer… someone is quietly wishing you sweet dreams. ♡",
+      "✨  Still studying? Someone is quietly smiling at your dedication. 💗",
+      "🌌  Rest your eyes, beautiful… your dreams will still be there tomorrow. ♡",
+      "💕  Good night, Akshi… sleep peacefully and wake up a little closer to your dream."
+    ]
+  };
+
+  function getPeriod(){
+    const h=new Date().getHours();
+    if(h>=5 && h<12)return "morning";
+    if(h>=12 && h<17)return "afternoon";
+    if(h>=17 && h<21)return "evening";
+    return "night";
+  }
+
+  function chooseWish(period){
+    const list=wishes[period];
+    let previous=-1;
+    try{previous=Number(sessionStorage.getItem("wishIndex_"+period));}catch(e){}
+    let i=Math.floor(Math.random()*list.length);
+    if(list.length>1 && i===previous)i=(i+1+Math.floor(Math.random()*(list.length-1)))%list.length;
+    try{sessionStorage.setItem("wishIndex_"+period,String(i));}catch(e){}
+    return list[i];
+  }
+
+  function setVisitMessage(){
+    const el=document.getElementById("randomEncouragement");
+    if(!el)return;
+    el.textContent=chooseWish(getPeriod());
+    el.classList.remove("show");
+    void el.offsetWidth;
+    el.classList.add("show");
+  }
+
+  window.addEventListener("pageshow",setVisitMessage);
 })();
 </script>
 
